@@ -1,7 +1,554 @@
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html>
+<head>
+    <meta charset="UTF-8">
+    <title>Kitsune</title>
+    <link rel="icon" href="fox_sprite.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="javascript/vis.min.js"></script>
+    <link href="css/vis.min.css" rel="stylesheet" type="text/css" />
+    <script src="javascript/jquery-3.3.1.js"></script>
+    <script src="javascript/jqueryStuff.js"></script>
+    <script src="javascript/nodeData.js"></script>
+    <script src="javascript/math.min.js"></script>
+
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <div id="topCurrencies"> <!-- Top currencies, including soul, light/dark beads, etc -->
+        <p id="currSoul">
+            You have<br/><span id="soulCount">0</span><br/>soul.<br/>
+            <span id="soulBeads"><span id="lightBead" class="borderFit">0</span><span id="darkBead" class="borderFit">0</span></span>
+            <span id="soulBeadsBeta"><span id="beadBeta" class=borderFit>0</span></span>
+        </p>
+
+    </div>
+    
+    <div id="mainPane"> <!-- Entire bottom part, including buttons and swapping panels -->
+        <div id="mainButtonsRow">
+            <button id="soulButton" class="button topButtons">Soul</button>
+            <button id="tailsButton" class="button topButtons">Test</button>
+            <button id="crystalsButton" class="button topButtons">Crystals</button>
+            <button id="mansionButton" class="button topButtons">Mansion</button>
+            <button id="storyButton" class="button topButtons">Story</button>
+            <button id="optionsButton" class="button topButtons">Options</button>
+            <button id="statsButton" class="button topButtons">Statistics</button>
+        </div>
+
+        <div class="mainPaneTab" id="soulTab">
+            <button id="soulMapButton" class="button lowerButtons">Map</button>
+            <button id="soulUpgradesButton" class="button lowerButtons">Upgrades</button>
+
+            <br/>
+
+            <div class="soulTabPane" id="soulMapTab">
+                <div id="leftMapPanel" class="mapPanelsAll mapSidePanels">
+                    <div id="leftMapPanelInnerDiv">
+                        <div id="leftSidePanelTitle" class="sidePanelTitle">
+                            undefined
+                        </div>
+                        <button id="buttonFight">Fight</button>
+                        <button id="buttonFlee">Flee</button>
+                        <button id="buttonRelease">Release</button>
+                        <div id="fightDetails">
+                            <div id="playerName">
+                                <b>Name</b>
+                            </div>
+                            <!----------------------------------------------->
+                            <div id="playerStatsBox">
+                                <div class="inner">
+                                    <div id="playerHealthBackground">
+                                        <div id="playerHealthBar"></div>
+                                    </div>
+                                    <div id="playerAttack">
+                                        <div class="inner">
+                                            <div id="pUpperAtk">
+                                                Attack
+                                            </div>
+                                            <div id="pLowerAtk">
+                                                1.8e308
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span id="playerHealthLabel">1.8e308 <b>|</b> 1.8e308</span>
+                                    <div id="autofightBox">
+                                        <div class="inner">
+                                            <input id="autofight" title="Autofight" type="checkbox">
+                                            <span id="autofightLabel">Autofight</span>
+                                        </div>
+                                    </div>
+                                    <div id="playerDefense">
+                                        <div class="inner">
+                                            <div id="pUpperDef">
+                                                Defense
+                                            </div>
+                                            <div id="pLowerDef">
+                                                1.8e308
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!----------------------------------------------->
+                            <div id="consumeRelease">
+                                <div class="inner" id="consumeReleaseInner">
+                                    <div id="soulBoxBackground"></div>
+                                    <div id="soulBox"></div>
+                                    <button id="buttonConsume">Consume</button>
+                                </div>
+                            </div>
+                            <!----------------------------------------------->
+                            <div id="enemyStatsBox">
+                                <div class="inner">
+                                    <div id="enemyDefense">
+                                        <div class="inner">
+                                            <div id="eUpperDef">
+                                                1.8e308
+                                            </div>
+                                            <div id="eLowerDef">
+                                                Defense
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="autoreleaseBox">
+                                        <div class="inner">
+                                            <input id="autorelease" title="Autorelease" type="checkbox">
+                                            <span id="autoreleaseLabel">Autorelease</span>
+                                        </div>
+                                    </div>
+                                    <span id="enemyHealthLabel">1.8e308 <b>|</b> 1.8e308</span>
+                                    <div id="enemyAttack">
+                                        <div class="inner">
+                                            <div id="eUpperAtk">
+                                                1.8e308
+                                            </div>
+                                            <div id="eLowerAtk">
+                                                Attack
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="enemyHealthBackground">
+                                        <div id="enemyHealthBar"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="enemyName">
+                                <b></b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="leftMapPanelInnerDivSpecial">
+                        This is a special div for special nodes. Left side.
+                    </div>
+                </div>
+
+                <div id="map1" class="mapPanelsAll"></div>
+
+                <div id="rightMapPanel" class="mapPanelsAll mapSidePanels">
+                    <div id="rightMapPanelInnerDiv">
+                        <div id="rightSidePanelTitle" class="sidePanelTitle">undefined</div>
+                        <!---------------------PUT COMBAT LOG HERE-------------------------->
+                    </div>
+
+                    <div id="rightMapPanelInnerDivSpecial">
+                        This is a special div for special nodes. Right side.
+                    </div>
+                </div>
+            </div>
+
+            <div class="soulTabPane" id="soulUpgradesTab">
+                Ignore all of this, it means nothin' anymore. I just am putting off deleting it.<br>
+                It's gonna throw so many errors when I do...
+                <div class="borderFit slightMarginTB">
+                    <button id="s11" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+                            Increase gain on death by 10x.<br/>
+                            Cost: 100 Soul
+                        </span>
+                        <span class="held">
+                            I'd have story text here, to flavor the upgrades some.<br/>
+                            S11
+                        </span>
+                    </button>
+                </div>
+
+                <br/>
+
+                <div class="borderFit slightMarginTB">
+                    <button id="s21" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S21
+                        </span>
+                    </button>
+
+                    <button id="s22" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S22
+                        </span>
+                    </button>
+                </div>
+
+                <br/>
+
+                <div class="borderFit slightMarginTB">
+                    <button id="s31" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S31
+                        </span>
+                    </button>
+                    <button id="s32" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S32
+                        </span>
+                    </button>
+                    <button id="s33" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S33
+                        </span>
+                    </button>
+                </div>
+
+                <br/>
+
+                <div class="borderFit slightMarginTB">
+                    <button id="s41" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S41
+                        </span>
+                    </button>
+                    <button id="s42" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S42
+                        </span>
+                    </button>
+                    <button id="s43" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S43
+                        </span>
+                    </button>
+                    <button id="s44" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S44
+                        </span>
+                    </button>
+                </div>
+    
+                <br/>
+
+                <div class="borderFit slightMarginTB">
+                    <button id="s51" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S51
+                        </span>
+                    </button>
+                    <button id="s52" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S52
+                        </span>
+                    </button>
+                    <button id="s53" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S53
+                        </span>
+                    </button>
+                    <button id="s54" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S54
+                        </span>
+                    </button>
+                    <button id="s55" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S55
+                        </span>
+                    </button>
+                </div>
+
+                <br/>
+
+                <div class="borderFit slightMarginTB">
+                    <button id="s61" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S61
+                        </span>
+                    </button>
+                    <button id="s62" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S62
+                        </span>
+                    </button>
+                    <button id="s63" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S63
+                        </span>
+                    </button>
+                    <button id="s64" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S64
+                        </span>
+                    </button>
+                    <button id="s65" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S65
+                        </span>
+                    </button>
+                    <button id="s66" class="button soulUpgradeBtn upgrade">
+                        <span class="unheld">
+
+                        </span>
+                        <span class="held">
+                            S66
+                        </span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mainPaneTab" id="tailsTab">
+<!--             Tails Tab<br/>
+            This will be unlocked from the start, but initially only show a single graphic, one tail straight up the middle.<br>
+            As you hit each threshhold, which I'm thinking will be 1000x the last (1e3, 1e6, 1e9, etc), the next appears, up to the 9th.<br>
+            After that you reset, and a button appears over the first, which unlocks a middle pane with new upgrades.<br/> -->
+            <br/>
+            <div id="tailsContainer">
+                <button id="tailsButton1" class="tailsButtons">1</button> <!---->
+                <button id="tailsButton2" class="tailsButtons">2</button>
+                <button id="tailsButton3" class="tailsButtons">3</button>
+                <button id="tailsButton4" class="tailsButtons">4</button>
+                <button id="tailsButton5" class="tailsButtons">5</button>
+                <button id="tailsButton6" class="tailsButtons">6</button>
+                <button id="tailsButton7" class="tailsButtons">7</button>
+                <button id="tailsButton8" class="tailsButtons">8</button>
+                <button id="tailsButton9" class="tailsButtons">9</button>
+                <!--========================Panel Type 1================================-->
+                <div id="tailsInnerPanel11" class="tailsInnerPanel">
+                    <button class="tailsInnerButtons tailsInnerButtons11">a</button>
+                </div>
+                <div id="tailsInnerPanel21" class="tailsInnerPanel">
+                    c
+                </div>
+                <div id="tailsInnerPanel31" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel41" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel51" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel61" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel71" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel81" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel91" class="tailsInnerPanel">
+                    
+                </div>
+                <!--========================Panel Type 2================================-->
+                <div id="tailsInnerPanel12" class="tailsInnerPanel">
+                    b
+                </div>
+                <div id="tailsInnerPanel22" class="tailsInnerPanel">
+                    d
+                </div>
+                <div id="tailsInnerPanel32" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel42" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel52" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel62" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel72" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel82" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel92" class="tailsInnerPanel">
+                    
+                </div>
+            </div>
+            <br/><br/><br/>
+            <button id="ascensionButton" class="button">Ascend</button>
+            
+        </div>
+
+        <div class="mainPaneTab" id="crystalsTab">
+            Crystals Tab<br/>
+            I don't think you can see this, can you?
+        </div>
+
+        <div class="mainPaneTab" id="mansionTab">
+            Mansion Tab<br/>
+            Or this.
+        </div>
+
+        <div class="mainPaneTab" id="storyTab">
+            <div id="storyTabCatDiv">
+                <button id="storySoulButton" class="button storyTabButtons">Soul</button>
+                <button id="storyTailsButton" class="button storyTabButtons">Test</button>
+                <button id="storyBeadsButton" class="button storyTabButtons">Beads</button>
+                <button id="storyAscensionButton" class="button storyTabButtons">Beads</button>
+            </div> <br/>
+            <div id="storyTextPane">
+                <div id="storySoulCat" class="storyTabCategories">
+                    <span id="ss1" class="storyBits">Test</span>
+                </div>
+    
+                <div id="storyTailsCat" class="storyTabCategories">
+                    <span id="st1" class="storyBits">test</span>
+                </div>
+    
+                <div id="storyBeadsCat" class="storyTabCategories">
+                    beads
+                </div>
+    
+                <div id="storyAscensionCat" class="storyTabCategories">
+    
+                </div>
+            </div>
+        </div>
+
+        <div class="mainPaneTab" id="optionsTab">
+            Options Tab<br/>
+            Lots of options so far, eh?
+        </div>
+
+        <div class="mainPaneTab" id="statsTab">
+            Stats Tab<br/>
+            Run stats, all time stats, things like that.
+        </div>
+
+    </div>
+    
 </body>
-</html>
+</html> 
+
+<!--
+    NOTES:
+    1) Start of the game, up to certain point, is slow. no polynomial growth, just absorb soul from one target, and consume.
+        a) each tail gained speeds the process up by an amount
+        c) each tail has a small series of upgrades, all just general/generic ones
+            1) later a tree unlocks for each tail, which is specific to a style, discussed later
+    2) Eventually, after hints at white beads, first white bead upgrade is the automatic generation
+        a) 'capstone' for stage 1 tail upgrades is corresponding autogen thing, except first
+            1) first is gained upon first white bead
+        b) 9th capstone also shows the 'ascend'(?) button, which is costly
+        c) ascension is human form, unlocks upgrade trees for each tail, discussed later
+    3) black beads are spent on 'manual' (manual being manual by character, not player) generation, while white is spent on automatic
+        a) manual generation is in Soul tab
+        b) tail upgrades are in tails tab
+        c) autogen is in crystals tab
+
+
+    4) FOR THE STAGE 1 UPGRADES
+        Each one should have 3 rows of 3 upgrades each. The leftmost upgrade of each row should be purchasable with
+        soul beads, whereas the next 2 are with soul. the soul beads DO NOT reset on prestige, while the soul upgrades do.
+
+
+    also maybe make some text variations for combat and stuff? randomly pick among a pool of words for certain things
+
+    upgrade ideas:
+    auto-get one tick of consume on enemy defeat
+    autorelease works with this to leave them barely alive
+    generate soul from combat
+
+
+
+
+    you need to have it so that when the player clicks, it checks for fighting
+    if true, it gets the current fighting details, and shows them
+    it shows different things depending on whether fighting or not
+
+    player can only fight one thing at a time
+    the duplicates upgrade later will use right panels, and simulate it
+        each area will have some sort of min/avg/max attack value. 
+            x < min = cant autofarm
+            min < x < avg = every 3 seconds
+            avg <  x < max = every 2 seconds
+            max < x = every second
+        also have soul speed value
+            each area will have 0/1 value, 0 means fighting, 1 means consuming
+            after value reached above, sets to 1, next loop will consume
+            consume follows same min/avg/max scale
+            upgrade that gets tick of consume on enemy defeat works here, reduces time by 1
+                can get 1 enemy per second with this
+        but this all comes later
+        for now, just 
+            onclick(check for fighting) {
+                show fighting details
+            }
+            WILL HAVE TO FIDDLE WITH PLAYER.CURRENTAREA
+
+            to still display details for the other panels and to avoid conflict, maybe on-fight set a temp variable equal to
+            current area, and use that instead? or even just player.currentAreaFight that doesnt change
+
+            DONT FORGET TO REMOVE THE DISABLED SELECTION
+-->
