@@ -242,7 +242,9 @@ $(document).ready(function() {
     var fightLoop;
 
     function fight(enemy) {
-        $("#buttonFight").hide();
+        if(player.fightingArea == player.currentArea) {
+            $("#buttonFight").hide();
+        }
         $("#consumeReleaseInner").hide();
         $("#buttonFlee").show();
         player.fighting = true;
