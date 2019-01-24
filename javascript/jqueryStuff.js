@@ -10,6 +10,10 @@ $(document).ready(function() {
 
     $("#buttonRelease").hide();
     $("#consumeReleaseInner").hide();
+
+    $("#startButton").click(function () {
+        $("#initialScreen").hide();
+    });
     
 
     var loopCounter = 0;

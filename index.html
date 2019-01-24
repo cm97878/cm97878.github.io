@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Kitsune</title>
+    <title>Kitsu.ne</title>
     <link rel="icon" href="fox_sprite.png">
     <link rel="stylesheet" href="css/styles.css">
     <script src="javascript/vis.min.js"></script>
@@ -26,7 +26,7 @@
     <div id="mainPane"> <!-- Entire bottom part, including buttons and swapping panels -->
         <div id="mainButtonsRow">
             <button id="soulButton" class="button topButtons">Soul</button>
-            <button id="tailsButton" class="button topButtons">Test</button>
+            <button id="tailsButton" class="button topButtons">Tails</button>
             <button id="crystalsButton" class="button topButtons">Crystals</button>
             <button id="mansionButton" class="button topButtons">Mansion</button>
             <button id="storyButton" class="button topButtons">Story</button>
@@ -453,7 +453,7 @@
         <div class="mainPaneTab" id="storyTab">
             <div id="storyTabCatDiv">
                 <button id="storySoulButton" class="button storyTabButtons">Soul</button>
-                <button id="storyTailsButton" class="button storyTabButtons">Test</button>
+                <button id="storyTailsButton" class="button storyTabButtons">Tails</button>
                 <button id="storyBeadsButton" class="button storyTabButtons">Beads</button>
                 <button id="storyAscensionButton" class="button storyTabButtons">Beads</button>
             </div> <br/>
@@ -488,6 +488,17 @@
 
     </div>
     
+    <div id="initialScreen">
+        <div id="introText">
+            <span class="bigText">Kitsu</span><spam class="bigText orange">.ne</spam><br>
+            The name that felt much more clever when I first came up with it&trade;<br><br>
+            <div id="changelogDiv" class="borderFit">
+                A changelog would probably go here. Or somethin' like that.
+            </div><br>
+            <button id="startButton" class="button">Start</button>
+        </div>
+    </div>
+    
 </body>
 </html> 
 
@@ -520,13 +531,6 @@
     autorelease works with this to leave them barely alive
     generate soul from combat
 
-
-
-
-    you need to have it so that when the player clicks, it checks for fighting
-    if true, it gets the current fighting details, and shows them
-    it shows different things depending on whether fighting or not
-
     player can only fight one thing at a time
     the duplicates upgrade later will use right panels, and simulate it
         each area will have some sort of min/avg/max attack value. 
@@ -540,15 +544,10 @@
             consume follows same min/avg/max scale
             upgrade that gets tick of consume on enemy defeat works here, reduces time by 1
                 can get 1 enemy per second with this
-        but this all comes later
-        for now, just 
-            onclick(check for fighting) {
-                show fighting details
-            }
-            WILL HAVE TO FIDDLE WITH PLAYER.CURRENTAREA
 
-            to still display details for the other panels and to avoid conflict, maybe on-fight set a temp variable equal to
-            current area, and use that instead? or even just player.currentAreaFight that doesnt change
 
-            DONT FORGET TO REMOVE THE DISABLED SELECTION
+    So what do I want on the right panel?
+        Description for sure
+        Combat log for sure
+        Clonefarm probably
 -->
