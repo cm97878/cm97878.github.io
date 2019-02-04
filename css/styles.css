@@ -660,32 +660,6 @@ body {
     display: none;
 }
 
-.soulUpgradeBtn {
-    border: 1px solid rgb(255, 123, 0);
-    background-color: rgb(71, 71, 71);
-    color: rgb(247, 247, 247);
-    width: 150px;
-    height: 100px;
-    margin-bottom: 5px;
-    font-size: 11px;
-    white-space: normal;
-    word-wrap: break-word;
-    vertical-align: top;
-
-}
-
-.soulUpgradeBtn:hover {
-    background-color: rgb(255, 123, 0);
-
-}
-
-.soulUpgradeBtn:disabled {
-    background-color: rgb(117, 117, 117);
-}
-
-.soulUpgradeBtn[data-unlocked] {
-    background-color: rgba(255, 123, 0, 0.329);
-}
 
 
 
