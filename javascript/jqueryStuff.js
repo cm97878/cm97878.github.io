@@ -6,6 +6,7 @@ $(document).ready(function() {
     $("#leftMapPanelInnerDivSpecial").show();
     $("#rightMapPanelInnerDivSpecial").show();
     $("#storyButton").hide();
+    $("#ascensionButton").hide();
     //nodes.get("home");
     //set default to be home here
 
