@@ -6,8 +6,6 @@ var nodes = new vis.DataSet([
         shape: 'hexagon',
         size: 15,
         details: {
-            list: [],
-            chance: [20],
             name: 'Home',}},
 
     {id: 'trailNorth1', 

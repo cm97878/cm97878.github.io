@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Kitsu.ne</title>
+    <title>Kitsune</title>
     <link rel="icon" href="fox_sprite.png">
     <link rel="stylesheet" href="css/styles.css">
     <script src="javascript/vis.min.js"></script>
@@ -149,6 +149,26 @@
                     <div id="rightMapPanelInnerDiv">
                         <div id="rightSidePanelTitle" class="sidePanelTitle">undefined</div>
                         <!---------------------PUT COMBAT LOG HERE-------------------------->
+                        <button id="buttonDesc" class="buttonRightPanel">Description</button>
+                        <button id="buttonLog" class="buttonRightPanel">Combat</button>
+                        <button id="buttonClone" class="buttonRightPanel">Clones</button>
+                        <div id="descTab">
+                            <div class="inner">
+
+                            </div>
+                        </div>
+
+                        <div id="logTab">
+                            <div class="inner">
+
+                            </div>
+                        </div>
+
+                        <div id="cloneTab">
+                            <div class="inner">
+
+                            </div>
+                        </div>
                     </div>
 
                     <div id="rightMapPanelInnerDivSpecial">
@@ -292,10 +312,14 @@
     
     <div id="initialScreen">
         <div id="introText">
-            <span class="bigText">Kitsu</span><spam class="bigText orange">.ne</spam><br>
-            The name that felt much more clever when I first came up with it&trade;<br><br>
+            <span class="bigText">Kitsu</span><spam class="bigText orange">ne</spam><br><br>
             <div id="changelogDiv" class="borderFit">
-                A changelog would probably go here. Or somethin' like that.
+                A changelog would probably go here. Or somethin' like that. for now, I'll use it to explain
+                the game instead. The basic premise is that the 'player character' (if you can call it that) is a fox, 
+                and the game starts off with it killing creatures and absorbing soul. The progression comes in the form of that soul
+                acting as a multiplier to combat stats, and used to buy upgrades. After enough, another tail is gained, and at 9,
+                you can reset pretty much everything in order to gain the first prestige currency,
+                which unlocks new and more powerful upgrades, so on and so forth.
             </div><br>
             <button id="startButton" class="button">Start</button>
         </div>
@@ -306,8 +330,8 @@
 
 <!--
     NOTES:
-    1) Start of the game, up to certain point, is slow. no polynomial growth, just absorb soul from one target, and consume.
-        a) each tail gained speeds the process up by an amount
+    1) Start of the game, up to certain point, is slow. no polynomial growth, just absorb soul from one target, and consume. (NOT QUITE)
+        a) each tail gained speeds the process up by an amount (NOPE)
         c) each tail has a small series of upgrades, all just general/generic ones
             1) later a tree unlocks for each tail, which is specific to a style, discussed later
     2) Eventually, after hints at white beads, first white bead upgrade is the automatic generation
@@ -351,5 +375,7 @@
     So what do I want on the right panel?
         Description for sure
         Combat log for sure
-        Clonefarm probably
+        Clone farming probably
+
+    Maybe change the Tails tab colors so that they're going to black/white
 -->

@@ -5,6 +5,7 @@ $(document).ready(function() {
     $("#rightMapPanelInnerDiv").hide();
     $("#leftMapPanelInnerDivSpecial").show();
     $("#rightMapPanelInnerDivSpecial").show();
+    $("#storyButton").hide();
     //nodes.get("home");
     //set default to be home here
 
@@ -119,7 +120,12 @@ $(document).ready(function() {
         player.fighting = false;
         if(player.fightingArea != player.currentArea) {
             updatePlayerStats();
-            $(".sidePanelTitle").html("<b>"+nodes.get(player.currentArea).details.name+"</b>");
+            if(nodes.get(player.currentArea).shape != "hexagon") {
+                $(".sidePanelTitle").html("<b>"+nodes.get(player.currentArea).details.name+"</b>");
+            }
+            else {
+                //Put unique node code here
+            }
         }
         endFight("flee");
     });
@@ -138,7 +144,12 @@ $(document).ready(function() {
         player.fighting = false;
         if(player.fightingArea != player.currentArea) {
             updatePlayerStats();
-            $(".sidePanelTitle").html("<b>"+nodes.get(player.currentArea).details.name+"</b>");
+            if(nodes.get(player.currentArea).shape != "hexagon") {
+                $(".sidePanelTitle").html("<b>"+nodes.get(player.currentArea).details.name+"</b>");
+            }
+            else {
+                //Put unique code here
+            }
         }
     });
 
@@ -215,7 +226,7 @@ $(document).ready(function() {
                 pCurrHp -= eDmg;
                 pHpRatio = ((pCurrHp/player.health)*100) + "%";
                 $("#playerHealthBar").css("width", pHpRatio);
-                $("#playerHealthLabel").html(formatNumber(pCurrHp) + " <b>|</b> " + formatNumber(pCurrHp));
+                $("#playerHealthLabel").html(formatNumber(pCurrHp) + " <b>|</b> " + formatNumber(player.health));
                 if(pCurrHp <= 0) {
                     endFight("lost", enemy);
                 }
@@ -253,7 +264,12 @@ $(document).ready(function() {
             player.fighting = false;
             if(player.fightingArea != player.currentArea) {
                 updatePlayerStats();
-                $(".sidePanelTitle").html("<b>"+nodes.get(player.currentArea).details.name+"</b>");
+                if(nodes.get(player.currentArea).shape != "hexagon") {
+                    $(".sidePanelTitle").html("<b>"+nodes.get(player.currentArea).details.name+"</b>");
+                }
+                else {
+                    //Put unique node code here
+                }
             }
         }
     }
@@ -284,7 +300,12 @@ $(document).ready(function() {
                     player.fighting = false;
                     if(player.fightingArea != player.currentArea) {
                         updatePlayerStats();
-                        $(".sidePanelTitle").html("<b>"+nodes.get(player.currentArea).details.name+"</b>");
+                        if(nodes.get(player.currentArea).shape != "hexagon") {
+                            $(".sidePanelTitle").html("<b>"+nodes.get(player.currentArea).details.name+"</b>");
+                        }
+                        else {
+                            //Put unique node code here
+                        }
                     }
                 }
             }
@@ -317,6 +338,8 @@ $(document).ready(function() {
         }
     }
 
+
+    //fix these. make individual .click functions for each button.
     $(".topButtons").click(function() {
         var tabname = $(this).attr("id");
         tabname = tabname.substring(0, (tabname.length - 6));
@@ -359,6 +382,30 @@ $(document).ready(function() {
         });
     });
 
+    $("#buttonDesc").click(function() {
+        if(player.activeRightMapTab != "descTab") {
+            $("#"+player.activeRightMapTab).hide();
+            $("#descTab").show();
+            player.activeRightMapTab = "descTab";
+        }
+    });
+
+    $("#buttonLog").click(function() {
+        if(player.activeRightMapTab != "logTab") {
+            $("#"+player.activeRightMapTab).hide();
+            $("#logTab").show();
+            player.activeRightMapTab = "logTab";
+        }
+    });
+
+    $("#buttonClone").click(function() {
+        if(player.activeRightMapTab != "cloneTab") {
+            $("#"+player.activeRightMapTab).hide();
+            $("#cloneTab").show();
+            player.activeRightMapTab = "cloneTab";
+        }
+    });
+
     function removeSoul(x) {
         player.soulTotal -= x;
     }
@@ -393,6 +440,9 @@ $(document).ready(function() {
         fightingArea: "",
         fighting: false,
         fightingID: "",
+        activeMainTab: "soulTab",
+        activeLowerTab: "soulMapTab",
+        activeRightMapTab: "descTab",
 
         //stats
         attack: 5,
@@ -466,6 +516,9 @@ $(document).ready(function() {
                     $("#rightMapPanelInnerDiv").hide();
                     $("#leftMapPanelInnerDivSpecial").show();
                     $("#rightMapPanelInnerDivSpecial").show();
+                    if(player.currentArea != nodeID) {
+                        player.currentArea = nodeID;
+                    }
                 }
                 else {
                     $("#leftMapPanelInnerDivSpecial").hide();
@@ -487,6 +540,9 @@ $(document).ready(function() {
                 {
                     $("#rightMapPanelInnerDiv").hide();
                     $("#rightMapPanelInnerDivSpecial").show();
+                    if(player.currentArea != nodeID) {
+                        player.currentArea = nodeID;
+                    }
                 }
                 else {
                     $("#rightMapPanelInnerDivSpecial").hide();
