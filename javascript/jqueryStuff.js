@@ -7,6 +7,7 @@ $(document).ready(function() {
     $("#rightMapPanelInnerDivSpecial").show();
     $("#storyButton").hide();
     $("#ascensionButton").hide();
+    $("#buttonClone").hide();
     //nodes.get("home");
     //set default to be home here
 
@@ -125,7 +126,9 @@ $(document).ready(function() {
                 $(".sidePanelTitle").html("<b>"+nodes.get(player.currentArea).details.name+"</b>");
             }
             else {
-                //Put unique node code here
+                //Put unique code here
+                $("#leftMapPanelInnerDiv").hide();
+                $("#leftMapPanelInnerDivSpecial").show();
             }
         }
         endFight("flee");
@@ -142,6 +145,7 @@ $(document).ready(function() {
         $("#buttonRelease").hide();
         $("#consumeReleaseInner").hide();
         $("#buttonFight").show();
+        updateFightDetails("init");
         player.fighting = false;
         if(player.fightingArea != player.currentArea) {
             updatePlayerStats();
@@ -150,6 +154,8 @@ $(document).ready(function() {
             }
             else {
                 //Put unique code here
+                $("#leftMapPanelInnerDiv").hide();
+                $("#leftMapPanelInnerDivSpecial").show();
             }
         }
     });
@@ -257,6 +263,22 @@ $(document).ready(function() {
             if($("#autofight").is(":checked")) {
                 consume(enemies[player.fightingID]);
             }
+
+            var currArea = nodes.get(player.fightingArea);
+            
+            if((currArea.details.killed+1) < currArea.details.toKill) {
+                currArea.details.killed += 1;
+                if(player.currentArea == player.fightingArea) {
+                    $("#descTabEnemiesKilled").html(currArea.details.killed + "/" + currArea.details.toKill);
+                    var ratio = ((currArea.details.killed/currArea.details.toKill)*100) + "%";
+                    $("#descTabBar").css("width", ratio);
+                }
+            }
+            else {
+                currArea.details.mastered = true;
+                $("#nextAreaUnlocker").hide();
+                unlockNextArea();
+            }
         }
         if(reason == "lost") {
             updateFightDetails("init");
@@ -270,6 +292,8 @@ $(document).ready(function() {
                 }
                 else {
                     //Put unique node code here
+                    $("#leftMapPanelInnerDiv").hide();
+                    $("#leftMapPanelInnerDivSpecial").show();
                 }
             }
         }
@@ -306,6 +330,9 @@ $(document).ready(function() {
                         }
                         else {
                             //Put unique node code here
+                            $("#leftMapPanelInnerDiv").hide();
+                            $("#leftMapPanelInnerDivSpecial").show();
+                            
                         }
                     }
                 }
@@ -336,6 +363,27 @@ $(document).ready(function() {
             player.soulLight += amnt; //adds light soul
             player.runTotalL += amnt;
             player.allTotalL += amnt;
+        }
+    }
+
+    function updateRightPanel() {
+        var node = nodes.get(player.currentArea);
+        $("#descTabText").html(node.details.description);
+        if(!node.details.mastered) {
+            $("#nextAreaUnlocker").show();
+            $("#descTabEnemiesKilled").html(node.details.killed + "/" + node.details.toKill);
+            var ratio = ((node.details.killed/node.details.toKill)*100) + "%";
+            $("#descTabBar").css("width", ratio);
+        }
+        else {
+            $("#nextAreaUnlocker").hide();
+        }
+    }
+
+    function unlockNextArea() {
+        var node = nodes.get(player.fightingArea);
+        for(var i = 0; i < node.details.toUnlock.length; i++) {
+            nodes.update({id: node.details.toUnlock[i], hidden: false});
         }
     }
 
@@ -533,6 +581,8 @@ $(document).ready(function() {
                     }
     
                     $("#leftMapPanelInnerDiv").show();
+
+                    updateRightPanel();
                     $("#rightMapPanelInnerDiv").show();
                 }
             }
@@ -555,6 +605,7 @@ $(document).ready(function() {
                         $("#rightSidePanelTitle").html("<b>"+clickedNode.details.name+"</b>");
                     }
 
+                    updateRightPanel();
                     $("#rightMapPanelInnerDiv").show();
                 }
             }

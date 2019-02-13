@@ -687,6 +687,58 @@ body {
     color: rgb(17, 17, 17);
 }
 
+.innerRightTabs {
+    border: 1px solid rgb(97, 97, 97);
+    width: 240px;
+    height: 400px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#descTabText {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#descTabBarBackground {
+    width: 220px;
+    height: 13px;
+    border: 1px solid rgb(20, 20, 20);
+    background-color: rgb(80, 80, 80);
+    position: absolute;
+    bottom: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+#descTabBar {
+    width: 0%;
+    height: 13px;
+    background-color: rgb(14, 158, 26);
+}
+
+#descTabEnemiesKilled {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 9pt;
+}
+
 #logTab {
     display: none;
 }

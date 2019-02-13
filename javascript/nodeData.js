@@ -13,9 +13,15 @@ var nodes = new vis.DataSet([
         y: -30,
         group: 'forest',
         details: {
+            description: "A worn trail winds east away through the underbrush from the den nestled in the cliffside.\
+            It seems well-traveled by the smaller creatures of the forest, and a good place to hunt.",
             enemies: ["redSquirrel", "blackSquirrel"],
             chance: [20, 5],
-            name: 'Trail1'}},
+            toKill: 6,
+            killed: 0,
+            mastered: false,
+            toUnlock: ["trailNorth2"],
+            name: 'Forest Trail'}},
             
     {id: 'trailNorth2', 
         x: 180, 
@@ -23,18 +29,29 @@ var nodes = new vis.DataSet([
         group: 'forest',
         hidden: true,
         details: {
+            description: "",
             enemies: ["redSquirrel", "blackSquirrel"],
             chance: [10, 5],
-            name: 'Trail'}},
+            toKill: 8,
+            killed: 0,
+            mastered: false,
+            toUnlock: [""],
+            name: 'Forest Trail'}},
 
     {id: 'trailSouth1',  
         x: 10, 
         y: 100,
         group: 'forest',
         details: {
+            description: "Not so much a trail as a stretch of rocky ground that can't support much more than moss and weeds,\
+            this clear area lazily follows the cliffside to the south.",
             enemies: ["redSquirrel","blackSquirrel","mole"],
             chance: [20, 10, 5],
-            name: 'Trail2'}},
+            toKill: 6,
+            killed: 0,
+            mastered: false,
+            toUnlock: [],
+            name: 'Rocky Trail'}},
 ]);
 
 var edges = new vis.DataSet([
