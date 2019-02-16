@@ -4,6 +4,18 @@ body {
     color: rgb(206, 206, 206);
 }
 
+table, td {
+    border: 1px solid rgb(97,97,97);
+    border-collapse: collapse;
+}
+
+button {
+    transition: background-color 0.2s, color 0.4s, box-shadow 0.02s ease-out;
+}
+button:active {
+    box-shadow: inset 0px 0px 5px rgb(15, 15, 15);
+}
+
 #initialScreen {
     position: absolute;
     top: 0; 
@@ -20,14 +32,11 @@ body {
     right: 0; 
     bottom: 0; 
     left: 0;
-    width: fit-content;
-    height: fit-content;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: 80px;
     position: absolute;
-    
 }
 
 .bigText {
@@ -123,7 +132,6 @@ body {
     text-align: center;
     display: inline-block;
     margin: 4px 2px;
-    transition-duration: 0.4s;
 }
 
 .topButtons {
@@ -267,7 +275,6 @@ body {
     height: 20px;
     margin-bottom: 2px;
     padding: 0;
-    transition-duration: 0.4s;
 }
 #buttonFight:hover {
     background-color: rgb(9, 136, 20);
@@ -285,7 +292,6 @@ body {
     margin-bottom: 2px;
     display: none;
     padding: 0;
-    transition-duration: 0.4s;
 }
 #buttonFlee:hover {
     background-color: rgb(190, 12, 12);
@@ -300,7 +306,6 @@ body {
     margin-bottom: 2px;
     display: none;
     padding: 0;
-    transition-duration: 0.4s;
 }
 #buttonRelease:hover {
     background-color: rgb(255, 166, 0);
@@ -657,7 +662,6 @@ body {
     right: 0px;
     bottom: 0px;
     padding: 0;
-    transition-duration: 0.4s;
 }
 #buttonConsume:hover {
     color: rgb(235, 235, 235);
@@ -680,7 +684,6 @@ body {
     margin-top: 4px;
     padding-left: 4px;
     padding-right: 4px;
-    transition-duration: 0.4s;
 }
 .buttonRightPanel:hover {
     background-color: rgb(221, 201, 89);
@@ -743,6 +746,35 @@ body {
     display: none;
 }
 
+#logOptionsButton {
+    background-image: url("../options_gear.png");
+    background-color: #aaaaaa;
+    background-size: 20px 20px;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 5px;
+    right: 5px;
+    outline: 1px solid rgb(35, 51, 190);
+    border: none;
+    display: none;
+}
+
+.optionsDiv {
+    top: 0; 
+    right: 0; 
+    bottom: 0; 
+    left: 0;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background-color: rgb(51, 51, 51);
+    border: 1px solid blue;
+    display: none;
+}
+
 #cloneTab {
     display: none;
 }
@@ -780,7 +812,6 @@ body {
     color: white;
     position: absolute;
     padding: 0;
-    transition-duration: 0.4s;
 }
 
 #tailsButton1 {

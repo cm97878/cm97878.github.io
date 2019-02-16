@@ -8,8 +8,8 @@
     <script src="javascript/vis.min.js"></script>
     <link href="css/vis.min.css" rel="stylesheet" type="text/css" />
     <script src="javascript/jquery-3.3.1.js"></script>
-    <script src="javascript/jqueryStuff.js"></script>
     <script src="javascript/nodeData.js"></script>
+    <script src="javascript/jqueryStuff.js"></script>
     <script src="javascript/math.min.js"></script>
 
 </head>
@@ -147,13 +147,13 @@
 
                 <div id="rightMapPanel" class="mapPanelsAll mapSidePanels">
                     <div id="rightMapPanelInnerDiv">
-                        <div id="rightSidePanelTitle" class="sidePanelTitle">undefined</div>
-                        <!---------------------PUT COMBAT LOG HERE-------------------------->
+                        <div id="rightSidePanelTitle" class="sidePanelTitle"></div>
                         <button id="buttonDesc" class="buttonRightPanel">Description</button>
                         <button id="buttonLog" class="buttonRightPanel">Combat Log</button>
                         <button id="buttonClone" class="buttonRightPanel">Clones</button>
                         <div id="rightPanelInnerTabs">
                             <div class="inner">
+                                <button id="logOptionsButton"></button>
                                 <div id="descTab" class="innerRightTabs">
                                     <div class="inner">
                                         <span id="descTabText"></span>
@@ -161,14 +161,14 @@
                                             <div id="descTabBarBackground">
                                                 <div id="descTabBar"></div>
                                             </div>
-                                            <div id="descTabEnemiesKilled">6/6</div>
+                                            <div id="descTabEnemiesKilled"></div>
                                         </div>
                                     </div>
                                 </div>
-        
+
                                 <div id="logTab" class="innerRightTabs">
                                     <div class="inner">
-        
+                                        
                                     </div>
                                 </div>
         
@@ -333,6 +333,10 @@
             </div><br>
             <button id="startButton" class="button">Start</button>
         </div>
+    </div>
+
+    <div id="logOptionsDiv" class="optionsDiv">
+        
     </div>
     
 </body>

@@ -436,6 +436,7 @@ $(document).ready(function() {
             $("#"+player.activeRightMapTab).hide();
             $("#descTab").show();
             player.activeRightMapTab = "descTab";
+            $("#logOptionsButton").hide();
         }
     });
 
@@ -444,6 +445,7 @@ $(document).ready(function() {
             $("#"+player.activeRightMapTab).hide();
             $("#logTab").show();
             player.activeRightMapTab = "logTab";
+            $("#logOptionsButton").show();
         }
     });
 
@@ -452,8 +454,40 @@ $(document).ready(function() {
             $("#"+player.activeRightMapTab).hide();
             $("#cloneTab").show();
             player.activeRightMapTab = "cloneTab";
+            $("#logOptionsButton").hide();
         }
     });
+
+    $("#logOptionsButton").click(function() {
+        if($("#logOptionsDiv").is(":visible")) {
+            $("#logOptionsDiv").hide();
+            logOptionsTab = false;
+        }
+        else {
+            $("#logOptionsDiv").show();
+            logOptionsTab = true;
+            openOptionsTab = "logOptionsDiv";
+        }
+    });
+
+    $(document).mouseup(function(e) 
+    {
+        if(logOptionsTab) {
+            switch(openOptionsTab) {
+                case "logOptionsDiv":
+                    var container = $("#logOptionsDiv");
+                    if (!$("#logOptionsButton").is(e.target) && !container.is(e.target) && container.has(e.target).length === 0)
+                    {
+                        container.hide();
+                        logOptionsTab = false;
+                    }
+                    break;
+            }
+        }
+    });
+    
+    logOptionsTab = false;
+    openOptionsTab = "";
 
     function removeSoul(x) {
         player.soulTotal -= x;
@@ -520,13 +554,14 @@ $(document).ready(function() {
         },
     };
 
-
     //================MAP SETUP================
     var container = document.getElementById('map1');
+
     var data = {
         nodes: nodes,
         edges: edges
     };
+
     var options = {
         groups: {
             forest: {
@@ -553,6 +588,7 @@ $(document).ready(function() {
     });
 
     network.on("click", function (params) {
+        $(".optionsDiv").hide();
         var nodeID = params['nodes']['0'];
 
         if (nodeID) {
