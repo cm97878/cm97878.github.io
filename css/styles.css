@@ -244,23 +244,51 @@ button:active {
 
 /* =========================Soul Tab========================== */
 
+#soulMapTab {
+    width: 1314px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
 .mapSidePanels {
     width: 300;
     height: 500;
+    position: absolute;
+}
+
+#leftMapPanel {
+    top: 0px;
+    left: 0px;
 }
 
 #map1 {
     width: 700;
     height: 500;
+    top: 0px;
+    left: 306px;
+    position: absolute;
+}
+
+#rightMapPanel {
+    top: 0px;
+    right: 0px;
 }
 
 #centerMap {
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25;
     top: 5px;
-    right: 5px;
+    right: 311px;
     outline: 1px solid rgb(35, 51, 190);
     border: none;
+    position: absolute;
+    background-color: rgb(71, 71, 71);
+    color: rgb(206, 206, 206);
+}
+#centerMap:hover {
+    background-color: rgb(35, 51, 190);
 }
 
 #leftMapPanelInnerDiv {
@@ -621,8 +649,6 @@ button:active {
 
 .mapPanelsAll {
     border: 1px solid rgb(97, 97, 97);
-    display: inline-block;
-    vertical-align: top;
 }
 
 #consumeRelease {
@@ -770,6 +796,9 @@ button:active {
     outline: 1px solid rgb(35, 51, 190);
     border: none;
     display: none;
+}
+#logOptionsButton:hover {
+    background-color: rgb(35, 51, 190);
 }
 
 .optionsDiv {

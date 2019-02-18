@@ -41,149 +41,152 @@
             <br/>
 
             <div class="soulTabPane" id="soulMapTab">
-                <div id="leftMapPanel" class="mapPanelsAll mapSidePanels">
-                    <div id="leftMapPanelInnerDiv">
-                        <div id="leftSidePanelTitle" class="sidePanelTitle">
-                            undefined
-                        </div>
-                        <button id="buttonFight">Fight</button>
-                        <button id="buttonFlee">Flee</button>
-                        <button id="buttonRelease">Release</button>
-                        <div id="fightDetails">
-                            <div id="playerName">
-                                <b>Name</b>
+                <div class="inner">
+                    <div id="leftMapPanel" class="mapPanelsAll mapSidePanels">
+                        <div id="leftMapPanelInnerDiv">
+                            <div id="leftSidePanelTitle" class="sidePanelTitle">
+                                undefined
                             </div>
-                            <!----------------------------------------------->
-                            <div id="playerStatsBox">
+                            <button id="buttonFight">Fight</button>
+                            <button id="buttonFlee">Flee</button>
+                            <button id="buttonRelease">Release</button>
+                            <div id="fightDetails">
+                                <div id="playerName">
+                                    <b>Name</b>
+                                </div>
+                                <!----------------------------------------------->
+                                <div id="playerStatsBox">
+                                    <div class="inner">
+                                        <div id="playerHealthBackground">
+                                            <div id="playerHealthBar"></div>
+                                        </div>
+                                        <div id="playerAttack">
+                                            <div class="inner">
+                                                <div id="pUpperAtk">
+                                                    Attack
+                                                </div>
+                                                <div id="pLowerAtk">
+                                                    1.8e308
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span id="playerHealthLabel">1.8e308 <b>|</b> 1.8e308</span>
+                                        <div id="autofightBox">
+                                            <div class="inner">
+                                                <input id="autofight" title="Autofight" type="checkbox">
+                                                <span id="autofightLabel">Autofight</span>
+                                            </div>
+                                        </div>
+                                        <div id="playerDefense">
+                                            <div class="inner">
+                                                <div id="pUpperDef">
+                                                    Defense
+                                                </div>
+                                                <div id="pLowerDef">
+                                                    1.8e308
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!----------------------------------------------->
+                                <div id="consumeRelease">
+                                    <div class="inner" id="consumeReleaseInner">
+                                        <div id="soulBoxBackground"></div>
+                                        <div id="soulBox"></div>
+                                        <button id="buttonConsume">Consume</button>
+                                    </div>
+                                </div>
+                                <!----------------------------------------------->
+                                <div id="enemyStatsBox">
+                                    <div class="inner">
+                                        <div id="enemyDefense">
+                                            <div class="inner">
+                                                <div id="eUpperDef">
+                                                    1.8e308
+                                                </div>
+                                                <div id="eLowerDef">
+                                                    Defense
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="autoreleaseBox">
+                                            <div class="inner">
+                                                <input id="autorelease" title="Autorelease" type="checkbox">
+                                                <span id="autoreleaseLabel">Autorelease</span>
+                                            </div>
+                                        </div>
+                                        <span id="enemyHealthLabel">1.8e308 <b>|</b> 1.8e308</span>
+                                        <div id="enemyAttack">
+                                            <div class="inner">
+                                                <div id="eUpperAtk">
+                                                    1.8e308
+                                                </div>
+                                                <div id="eLowerAtk">
+                                                    Attack
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="enemyHealthBackground">
+                                            <div id="enemyHealthBar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="enemyName">
+                                    <b></b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="leftMapPanelInnerDivSpecial">
+                            This is a special div for special nodes. Left side.
+                        </div>
+                    </div>
+
+                    <div id="map1" class="mapPanelsAll"></div>
+
+                    <div id="rightMapPanel" class="mapPanelsAll mapSidePanels">
+                        <div id="rightMapPanelInnerDiv">
+                            <div id="rightSidePanelTitle" class="sidePanelTitle"></div>
+                            <button id="buttonDesc" class="buttonRightPanel">Description</button>
+                            <button id="buttonLog" class="buttonRightPanel">Combat Log</button>
+                            <button id="buttonClone" class="buttonRightPanel">Clones</button>
+                            <div id="rightPanelInnerTabs">
                                 <div class="inner">
-                                    <div id="playerHealthBackground">
-                                        <div id="playerHealthBar"></div>
-                                    </div>
-                                    <div id="playerAttack">
+                                    <button id="logOptionsButton"></button>
+                                    <div id="descTab" class="innerRightTabs">
                                         <div class="inner">
-                                            <div id="pUpperAtk">
-                                                Attack
-                                            </div>
-                                            <div id="pLowerAtk">
-                                                1.8e308
+                                            <span id="descTabText"></span>
+                                            <div id="nextAreaUnlocker">
+                                                <div id="descTabBarBackground">
+                                                    <div id="descTabBar"></div>
+                                                </div>
+                                                <div id="descTabEnemiesKilled"></div>
                                             </div>
                                         </div>
                                     </div>
-                                    <span id="playerHealthLabel">1.8e308 <b>|</b> 1.8e308</span>
-                                    <div id="autofightBox">
-                                        <div class="inner">
-                                            <input id="autofight" title="Autofight" type="checkbox">
-                                            <span id="autofightLabel">Autofight</span>
-                                        </div>
-                                    </div>
-                                    <div id="playerDefense">
-                                        <div class="inner">
-                                            <div id="pUpperDef">
-                                                Defense
-                                            </div>
-                                            <div id="pLowerDef">
-                                                1.8e308
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!----------------------------------------------->
-                            <div id="consumeRelease">
-                                <div class="inner" id="consumeReleaseInner">
-                                    <div id="soulBoxBackground"></div>
-                                    <div id="soulBox"></div>
-                                    <button id="buttonConsume">Consume</button>
-                                </div>
-                            </div>
-                            <!----------------------------------------------->
-                            <div id="enemyStatsBox">
-                                <div class="inner">
-                                    <div id="enemyDefense">
-                                        <div class="inner">
-                                            <div id="eUpperDef">
-                                                1.8e308
-                                            </div>
-                                            <div id="eLowerDef">
-                                                Defense
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="autoreleaseBox">
-                                        <div class="inner">
-                                            <input id="autorelease" title="Autorelease" type="checkbox">
-                                            <span id="autoreleaseLabel">Autorelease</span>
-                                        </div>
-                                    </div>
-                                    <span id="enemyHealthLabel">1.8e308 <b>|</b> 1.8e308</span>
-                                    <div id="enemyAttack">
-                                        <div class="inner">
-                                            <div id="eUpperAtk">
-                                                1.8e308
-                                            </div>
-                                            <div id="eLowerAtk">
-                                                Attack
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="enemyHealthBackground">
-                                        <div id="enemyHealthBar"></div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div id="enemyName">
-                                <b></b>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="leftMapPanelInnerDivSpecial">
-                        This is a special div for special nodes. Left side.
-                    </div>
-                </div>
-
-                <div id="map1" class="mapPanelsAll"></div>
-
-                <div id="rightMapPanel" class="mapPanelsAll mapSidePanels">
-                    <div id="rightMapPanelInnerDiv">
-                        <div id="rightSidePanelTitle" class="sidePanelTitle"></div>
-                        <button id="buttonDesc" class="buttonRightPanel">Description</button>
-                        <button id="buttonLog" class="buttonRightPanel">Combat Log</button>
-                        <button id="buttonClone" class="buttonRightPanel">Clones</button>
-                        <div id="rightPanelInnerTabs">
-                            <div class="inner">
-                                <button id="logOptionsButton"></button>
-                                <div id="descTab" class="innerRightTabs">
-                                    <div class="inner">
-                                        <span id="descTabText"></span>
-                                        <div id="nextAreaUnlocker">
-                                            <div id="descTabBarBackground">
-                                                <div id="descTabBar"></div>
-                                            </div>
-                                            <div id="descTabEnemiesKilled"></div>
+                                    <div id="logTab" class="innerRightTabs">
+                                        <div class="inner">
+                                            
                                         </div>
                                     </div>
-                                </div>
-
-                                <div id="logTab" class="innerRightTabs">
-                                    <div class="inner">
-                                        
-                                    </div>
-                                </div>
-        
-                                <div id="cloneTab" class="innerRightTabs">
-                                    <div class="inner">
-        
+            
+                                    <div id="cloneTab" class="innerRightTabs">
+                                        <div class="inner">
+            
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div id="rightMapPanelInnerDivSpecial">
-                        This is a special div for special nodes. Right side.
+                        <div id="rightMapPanelInnerDivSpecial">
+                            This is a special div for special nodes. Right side.
+                        </div>
                     </div>
+                    <button id="centerMap">C</button>
                 </div>
             </div>
 

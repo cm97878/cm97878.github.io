@@ -682,5 +682,9 @@ $(document).ready(function() {
             }
         }
     }
+
+    $("#centerMap").click(function () {
+        network.fit();
+    });
     //================MAP SETUP================
 });
