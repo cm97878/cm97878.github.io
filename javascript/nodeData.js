@@ -29,15 +29,15 @@ var nodes = new vis.DataSet([
         group: 'forest',
         hidden: true,
         details: {
-            description: "The cliffside pulls away from the trail, although the dense forest vegetation is too thick to\
-            comfortably traverse. The trail itself winds south, and both the sound and smell of running water can be\
-            heard from nearby.",
+            description: "As the vegetation thins out for a short ways, the path seems to split. To the west is the trail to the\
+            den, while there's a fork to the east - one winding north, towards the sound and smell of flowing water, and one\
+            drifting south, deeper into the forest. There seems to be a small patch in the brambles to the southwest, as well.",
             enemies: ["redSquirrel", "blackSquirrel"],
             chance: [10, 5],
-            toKill: 1,
+            toKill: 2,
             killed: 0,
             mastered: false,
-            toUnlock: ["trailNorthClearing1"],
+            toUnlock: ["trailNorthClearing1", "trailRiver1", "trailNorth3"],
             name: 'Forest Trail'}},
 
         {id: 'trailNorthClearing1', 
@@ -54,7 +54,40 @@ var nodes = new vis.DataSet([
             killed: 0,
             mastered: false,
             toUnlock: [],
-            name: 'Forest Trail'}},
+            name: 'Forest Clearing'}},
+
+        {id: 'trailNorth3', 
+            x: 250, 
+            y: 105,
+            group: 'forest',
+            hidden: true,
+            details: {
+                description: "Filler text, im tired of writing",
+                enemies: ["redSquirrel", "blackSquirrel"],
+                chance: [10, 5],
+                toKill: 2,
+                killed: 0,
+                mastered: false,
+                toUnlock: [],
+                name: 'Forest Trail'}},
+
+        {id: 'trailRiver1', 
+            x: 255, 
+            y: 7,
+            group: 'forest',
+            hidden: true,
+            details: {
+                description: "The faint path meets and follows the bank of a river as it emerges from the forest. The water here seems\
+                deep and fast. Looking to the west, the vegetation hugging the river is too thick to comfortably move through, and\
+                in the distance you can see a waterfall flowing down the cliffside.",
+                enemies: ["redSquirrel", "blackSquirrel"],
+                chance: [10, 5],
+                toKill: 2,
+                killed: 0,
+                mastered: false,
+                toUnlock: [],
+                name: 'River Trail - Forest Side'}},
+
 
     {id: 'trailSouth1',  
         x: 10, 
@@ -84,6 +117,12 @@ var edges = new vis.DataSet([
 
     {id: "trailNorth2-trailNorthClearing1",
         from: 'trailNorth2', to: 'trailNorthClearing1'},
+
+    {id: "trailNorth2-trailNorth3",
+        from: 'trailNorth2', to: 'trailNorth3'},
+
+    {id: "trailNorth2-trailRiver1",
+        from: 'trailNorth2', to: 'trailRiver1'},
 ]);
 
 

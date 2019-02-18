@@ -51,6 +51,8 @@ button:active {
     height: 420px;
     margin-top: 10px;
     display: inline-block;
+    text-align: left;
+    overflow-y: scroll;
 }
 
 #startButton {

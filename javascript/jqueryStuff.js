@@ -383,8 +383,10 @@ $(document).ready(function() {
     function unlockNextArea() {
         var node = nodes.get(player.fightingArea);
         if(!(node.details.toUnlock == null)) {
+            console.log(player.fightingArea);
             for(var i = 0; i < node.details.toUnlock.length; i++) {
                 nodes.update({id: node.details.toUnlock[i], hidden: false});
+                console.log("showed " + node.details.toUnlock[i]);
             }
         }
     }
