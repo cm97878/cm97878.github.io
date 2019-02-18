@@ -382,8 +382,10 @@ $(document).ready(function() {
 
     function unlockNextArea() {
         var node = nodes.get(player.fightingArea);
-        for(var i = 0; i < node.details.toUnlock.length; i++) {
-            nodes.update({id: node.details.toUnlock[i], hidden: false});
+        if(!(node.details.toUnlock == null)) {
+            for(var i = 0; i < node.details.toUnlock.length; i++) {
+                nodes.update({id: node.details.toUnlock[i], hidden: false});
+            }
         }
     }
 
@@ -516,7 +518,7 @@ $(document).ready(function() {
     }
 
     var player = {
-        //misc shit
+        //misc shit. either move from player or run function to set all these active
         ascension: 1,
         stop: "",
         currentArea: "",
@@ -554,13 +556,17 @@ $(document).ready(function() {
         },
     };
 
+    function save() {
+        var x = nodes.get();
+        var savedNodes = [{id: x[0].id, mastered: x[0].details.mastered}];
+        for(var i = 1; i < x.length; i++) {
+            savedNodes.push({id: x[i].id, mastered: x[i].details.mastered});
+        }
+        
+    }
+
     //================MAP SETUP================
     var container = document.getElementById('map1');
-
-    var data = {
-        nodes: nodes,
-        edges: edges
-    };
 
     var options = {
         groups: {
@@ -576,6 +582,12 @@ $(document).ready(function() {
             }
         }
     };
+
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+
     var network = new vis.Network(container, data, options);
     
     network.setOptions({
@@ -672,6 +684,3 @@ $(document).ready(function() {
     }
     //================MAP SETUP================
 });
-
-    
-

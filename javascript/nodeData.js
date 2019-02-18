@@ -17,7 +17,7 @@ var nodes = new vis.DataSet([
             It seems well-traveled by the smaller creatures of the forest, and a good place to hunt.",
             enemies: ["redSquirrel", "blackSquirrel"],
             chance: [20, 5],
-            toKill: 6,
+            toKill: 1,
             killed: 0,
             mastered: false,
             toUnlock: ["trailNorth2"],
@@ -29,13 +29,31 @@ var nodes = new vis.DataSet([
         group: 'forest',
         hidden: true,
         details: {
-            description: "",
+            description: "The cliffside pulls away from the trail, although the dense forest vegetation is too thick to\
+            comfortably traverse. The trail itself winds south, and both the sound and smell of running water can be\
+            heard from nearby.",
             enemies: ["redSquirrel", "blackSquirrel"],
             chance: [10, 5],
-            toKill: 8,
+            toKill: 1,
             killed: 0,
             mastered: false,
-            toUnlock: [""],
+            toUnlock: ["trailNorthClearing1"],
+            name: 'Forest Trail'}},
+
+        {id: 'trailNorthClearing1', 
+        x: 110, 
+        y: 40,
+        group: 'forest',
+        hidden: true,
+        details: {
+            description: "A small path through some brambles you could barely squeeze through lead into this small clearing.\
+            The sunlight trickles through the thinner branches of the trees, giving the clearing a calm, serene look.",
+            enemies: ["redSquirrel", "blackSquirrel"],
+            chance: [5, 10],
+            toKill: 1,
+            killed: 0,
+            mastered: false,
+            toUnlock: [],
             name: 'Forest Trail'}},
 
     {id: 'trailSouth1',  
@@ -50,7 +68,7 @@ var nodes = new vis.DataSet([
             toKill: 6,
             killed: 0,
             mastered: false,
-            toUnlock: [],
+            toUnlock: [""],
             name: 'Rocky Trail'}},
 ]);
 
@@ -63,6 +81,9 @@ var edges = new vis.DataSet([
 
     {id: "trailNorth1-trailNorth2", 
         from: 'trailNorth1', to: 'trailNorth2'},
+
+    {id: "trailNorth2-trailNorthClearing1",
+        from: 'trailNorth2', to: 'trailNorthClearing1'},
 ]);
 
 

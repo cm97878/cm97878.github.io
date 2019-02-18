@@ -248,14 +248,26 @@ button:active {
     width: 300;
     height: 500;
 }
+
 #map1 {
     width: 700;
     height: 500;
 }
+
+#centerMap {
+    height: 20px;
+    width: 20px;
+    top: 5px;
+    right: 5px;
+    outline: 1px solid rgb(35, 51, 190);
+    border: none;
+}
+
 #leftMapPanelInnerDiv {
     width: inherit;
     height: inherit;
 }
+
 .sidePanelTitle {
     width: 240px;
     height: fit-content;
