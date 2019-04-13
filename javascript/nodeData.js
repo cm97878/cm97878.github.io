@@ -101,7 +101,7 @@ var nodes = new vis.DataSet([
             toKill: 6,
             killed: 0,
             mastered: false,
-            toUnlock: [""],
+            toUnlock: [],
             name: 'Rocky Trail'}},
 ]);
 

@@ -5,7 +5,7 @@ $(document).ready(function() {
     $("#rightMapPanelInnerDiv").hide();
     $("#leftMapPanelInnerDivSpecial").show();
     $("#rightMapPanelInnerDivSpecial").show();
-    $("#storyButton").hide();
+    //$("#storyButton").hide();
     $("#ascensionButton").hide();
     $("#buttonClone").hide();
     //nodes.get("home");
@@ -58,7 +58,7 @@ $(document).ready(function() {
         }
     });
 
-    //Could optimize this better. Have an activeTab variable, change active tab. Probably a good idea to do this.
+    //Have an activeTab variable, change active tab
     function updateTailsTabs() { //Refresh the tabs for the ascension thing
         $(".tailsInnerPanel").each(function() {
             if($(this).css("display") != "none") //If this tab is visible
@@ -421,7 +421,7 @@ $(document).ready(function() {
         });
     });
 
-    $(".storyTabButtons").click(function() {
+/*     $(".storyTabButtons").click(function() {
         var tabname = $(this).attr("id");
         tabname = tabname.substring(0, (tabname.length - 6));
 
@@ -433,7 +433,7 @@ $(document).ready(function() {
                 $(this).css("display","none");
             }
         });
-    });
+    }); */
 
     $("#buttonDesc").click(function() {
         if(player.activeRightMapTab != "descTab") {
@@ -520,9 +520,8 @@ $(document).ready(function() {
     }
 
     var player = {
-        //misc shit. either move from player or run function to set all these active
+        //misc shit. either move from player or run function to set all these active on load
         ascension: 1,
-        stop: "",
         currentArea: "",
         fightingArea: "",
         fighting: false,
@@ -552,20 +551,26 @@ $(document).ready(function() {
         soulDark: 0,
         soulLight: 0,
     
-        story: {
+/*         story: {
             start: true,
             soulStory1: true,
-        },
+        }, */
     };
 
     function save() {
         var x = nodes.get();
-        var savedNodes = [{id: x[0].id, mastered: x[0].details.mastered}];
+        var savedNodes = [{id: x[0].id, details: x[0].details}];
         for(var i = 1; i < x.length; i++) {
-            savedNodes.push({id: x[i].id, mastered: x[i].details.mastered});
+            savedNodes.push({id: x[i].id, details: x[i].details});
         }
-        
+        localStorage.setItem('nodes', savedNodes);
+
     }
+    $("#saveButton").click(save());
+
+    $("#clearButton").click(function () {
+        localStorage.removeItem('nodes');
+    });
 
     //================MAP SETUP================
     var container = document.getElementById('map1');
@@ -602,7 +607,7 @@ $(document).ready(function() {
     });
 
     network.on("click", function (params) {
-        $(".optionsDiv").hide();
+        $(".popupOptionsDiv").hide();
         var nodeID = params['nodes']['0'];
 
         if (nodeID) {

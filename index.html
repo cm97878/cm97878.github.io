@@ -198,10 +198,6 @@
         </div>
 
         <div class="mainPaneTab" id="tailsTab">
-<!--             Tails Tab<br/>
-            This will be unlocked from the start, but initially only show a single graphic, one tail straight up the middle.<br>
-            As you hit each threshhold, which I'm thinking will be 1000x the last (1e3, 1e6, 1e9, etc), the next appears, up to the 9th.<br>
-            After that you reset, and a button appears over the first, which unlocks a middle pane with new upgrades.<br/> -->
             <br/>
             <div id="tailsContainer">
                 <button id="tailsButton1" class="tailsButtons">1</button> <!--  -->
@@ -215,33 +211,36 @@
                 <button id="tailsButton9" class="tailsButtons">9</button> <!--  -->
                 <!--========================Panel Type 1================================-->
                 <div id="tailsInnerPanel11" class="tailsInnerPanel">
-                    a
+                    This will be unlocked from the start, but initially only show a single graphic, one tail straight up the middle.
+                    As you hit each threshhold, the next appears, up to the 9th.
+                    After that you reset, and a button appears over the first, which unlocks a middle pane with new upgrades. Each
+                    of these panels is different.
                 </div>
                 <div id="tailsInnerPanel21" class="tailsInnerPanel">
-                    c
+                    21
                 </div>
                 <div id="tailsInnerPanel31" class="tailsInnerPanel">
-                    
+                    31
                 </div>
                 <div id="tailsInnerPanel41" class="tailsInnerPanel">
-                    
+                    41
                 </div>
                 <div id="tailsInnerPanel51" class="tailsInnerPanel">
-                    
+                    51
                 </div>
                 <div id="tailsInnerPanel61" class="tailsInnerPanel">
-                    
+                    61
                 </div>
                 <div id="tailsInnerPanel71" class="tailsInnerPanel">
-                    
+                    71
                 </div>
                 <div id="tailsInnerPanel81" class="tailsInnerPanel">
-                    
+                    81
                 </div>
                 <div id="tailsInnerPanel91" class="tailsInnerPanel">
-                    
+                    91
                 </div>
-                <!--========================Panel Type 2================================-->
+                <!--========================Panel Type 2================================--> 
                 <div id="tailsInnerPanel12" class="tailsInnerPanel">
                     b
                 </div>
@@ -277,15 +276,13 @@
 
         <div class="mainPaneTab" id="crystalsTab">
             Crystals Tab<br/>
-            I don't think you can see this, can you?
         </div>
 
         <div class="mainPaneTab" id="mansionTab">
             Mansion Tab<br/>
-            Or this.
         </div>
 
-        <div class="mainPaneTab" id="storyTab">
+<!--         <div class="mainPaneTab" id="storyTab">
             <div id="storyTabCatDiv">
                 <button id="storySoulButton" class="button storyTabButtons">Soul</button>
                 <button id="storyTailsButton" class="button storyTabButtons">Tails</button>
@@ -309,11 +306,13 @@
     
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="mainPaneTab" id="optionsTab">
             Options Tab<br/>
-            Lots of options so far, eh?
+            Hey, actual options! Kinda. They don't <i>work</i>, but they're there!<br><br>
+            <button id="saveButton">Save</button>
+            <button id="clearButton">Clear Data</button>
         </div>
 
         <div class="mainPaneTab" id="statsTab">
@@ -328,11 +327,11 @@
             <span class="bigText">Kitsu</span><spam class="bigText orange">ne</spam><br><br>
             <div id="changelogDiv" class="borderFit">
                 A changelog would probably go here. Or somethin' like that. for now, I'll use it to explain
-                the game instead. The basic premise is that the 'player character' (if you can call it that) is a fox, 
+                the game instead. The basic premise is that the 'player character' is a fox, 
                 and the game starts off with it killing creatures and absorbing soul. The progression comes in the form of that soul
-                acting as a multiplier to combat stats, and used to buy upgrades. After enough, another tail is gained, and at 9,
+                acting as a multiplier to some combat stats, and also is used to buy upgrades. After enough, another tail is gained, and at 9,
                 you can reset pretty much everything in order to gain the first prestige currency,
-                which unlocks new and more powerful upgrades, so on and so forth.<br><br><br>
+                which unlocks new and more powerful upgrades, so on and so forth.<br><br>
                 To start, click one of the two circular nodes. Click fight. You should be able to kill one enemy, but cannot
                 kill the other. Click 'consume' after that, and you'll gain Soul. Each enemy gives you a certain amount,
                 and then 5x that amount on death; 5 base, 25 on death, for 30 total, for example.
@@ -353,62 +352,10 @@
         </div>
     </div>
 
-    <div id="logOptionsDiv" class="optionsDiv">
-        <button id="testbutton">save</button>
-        <button id="testbutton2">load</button>
+    <div id="logOptionsDiv" class="popupOptionsDiv">
+
     </div>
     
 </body>
 </html> 
 
-<!--
-    NOTES:
-    1) Start of the game, up to certain point, is slow. no polynomial growth, just absorb soul from one target, and consume. (NOT QUITE)
-        a) each tail gained speeds the process up by an amount (NOPE)
-        c) each tail has a small series of upgrades, all just general/generic ones
-            1) later a tree unlocks for each tail, which is specific to a style, discussed later
-    2) Eventually, after hints at white beads, first white bead upgrade is the automatic generation
-        a) 'capstone' for stage 1 tail upgrades is corresponding autogen thing, except first
-            1) first is gained upon first white bead
-        b) 9th capstone also shows the 'ascend'(?) button, which is costly
-        c) ascension is human form, unlocks upgrade trees for each tail, discussed later
-    3) black beads are spent on 'manual' (manual being manual by character, not player) generation, while white is spent on automatic
-        a) manual generation is in Soul tab
-        b) tail upgrades are in tails tab
-        c) autogen is in crystals tab
-
-
-    4) FOR THE STAGE 1 UPGRADES
-        Each one should have 3 rows of 3 upgrades each. The leftmost upgrade of each row should be purchasable with
-        soul beads, whereas the next 2 are with soul. the soul beads DO NOT reset on prestige, while the soul upgrades do.
-
-
-    also maybe make some text variations for combat and stuff? randomly pick among a pool of words for certain things
-
-    upgrade ideas:
-    auto-get one tick of consume on enemy defeat
-    autorelease works with this to leave them barely alive
-    generate soul from combat
-
-    player can only fight one thing at a time
-    the duplicates upgrade later will use right panels, and simulate it
-        each area will have some sort of min/avg/max attack value. 
-            x < min = cant autofarm
-            min < x < avg = every 3 seconds
-            avg <  x < max = every 2 seconds
-            max < x = every second
-        also have soul speed value
-            each area will have 0/1 value, 0 means fighting, 1 means consuming
-            after value reached above, sets to 1, next loop will consume
-            consume follows same min/avg/max scale
-            upgrade that gets tick of consume on enemy defeat works here, reduces time by 1
-                can get 1 enemy per second with this
-
-
-    So what do I want on the right panel?
-        Description for sure
-        Combat log for sure
-        Clone farming probably
-
-    Maybe change the Tails tab colors so that they're going to black/white
--->
