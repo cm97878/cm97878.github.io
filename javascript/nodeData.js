@@ -8,6 +8,8 @@ var nodes = new vis.DataSet([
         details: {
             name: 'Home',}},
 
+
+
     {id: 'trailNorth1', 
         x: 100, 
         y: -30,
@@ -40,7 +42,7 @@ var nodes = new vis.DataSet([
             toUnlock: ["trailNorthClearing1", "trailRiver1", "trailNorth3"],
             name: 'Forest Trail'}},
 
-        {id: 'trailNorthClearing1', 
+    {id: 'trailNorthClearing1', 
         x: 110, 
         y: 40,
         group: 'forest',
@@ -56,7 +58,7 @@ var nodes = new vis.DataSet([
             toUnlock: [],
             name: 'Forest Clearing'}},
 
-        {id: 'trailNorth3', 
+    {id: 'trailNorth3', 
             x: 250, 
             y: 105,
             group: 'forest',
@@ -71,7 +73,7 @@ var nodes = new vis.DataSet([
                 toUnlock: [],
                 name: 'Forest Trail'}},
 
-        {id: 'trailRiver1', 
+    {id: 'trailRiver1', 
             x: 255, 
             y: 7,
             group: 'forest',
@@ -89,6 +91,8 @@ var nodes = new vis.DataSet([
                 name: 'River Trail - Forest Side'}},
 
 
+
+                
     {id: 'trailSouth1',  
         x: 10, 
         y: 100,
