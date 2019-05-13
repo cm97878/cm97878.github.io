@@ -5,7 +5,7 @@ body {
 }
 
 table, td {
-    border: 1px solid rgb(97,97,97);
+    border: none;
     border-collapse: collapse;
 }
 
@@ -146,6 +146,10 @@ button:active {
 .topButtons:hover {
     background-color: rgb(0, 140, 255);
     color: rgb(12, 12, 12);
+}
+
+#storyButton {
+    display: none;
 }
 
 #crystalsButton {
@@ -690,8 +694,8 @@ button:active {
 }
 
 #buttonConsume {
-    border: rgb(156, 156, 156);
-    background-color: rgb(231, 231, 231);
+    border: none;
+    background-color: rgb(235, 235, 235);
     color: rgb(12, 12, 12);
     width: 70px;
     height: 20px;
@@ -703,13 +707,47 @@ button:active {
     bottom: 0px;
     padding: 0;
 }
-#buttonConsume:hover {
-    color: rgb(235, 235, 235);
-    background-color: rgb(12, 12, 12);
-}
 
 #soulUpgradesTab {
     display: none;
+}
+
+.upgradeTitle {
+    font-size: 16pt;
+}
+#homeTitle {
+    color: rgb(0, 108, 196);
+}
+
+.upgradeGroups {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    height: fit-content;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#upgradeGroupHome {
+    border: 2px solid rgb(0, 108, 196);
+}
+
+.upgradeButtonTitle {
+    margin-bottom: 5px;
+    display: block;
+}
+
+.homeUpgradeBtns {
+    border: 1px solid rgb(0, 108, 196);
+    background-color: rgb(71, 71, 71);
+    color: rgb(247, 247, 247);
+    width: 150px;
+    height: 80px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.homeUpgradeBtns:hover {
+    background-color: rgb(0, 108, 196);
+    color: rgb(17, 17, 17);
 }
 
 
@@ -784,6 +822,14 @@ button:active {
 
 #logTab {
     display: none;
+    text-align: left;
+    overflow-y: scroll;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+#logTable {
+    font-size: 11pt;
 }
 
 #logOptionsButton {

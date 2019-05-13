@@ -17,13 +17,15 @@ $(document).ready(function() {
     $("#startButton").click(function () {
         $("#initialScreen").hide();
     });
-    
 
     var loopCounter = 0;
 
     function gLoop() {
         updateSoul();
-        if(loopCounter >=10) {
+        if(loopCounter == 5 || loopCounter == 10) {
+            upgradeCostCheck();
+        }
+        if(loopCounter >= 10) {
             updatePlayerStats();
             loopCounter = 0;
         }
@@ -31,16 +33,113 @@ $(document).ready(function() {
     }
     var gameLoop = setInterval(gLoop, 50);
 
+    var player = {
+        //misc shit. either move from player or run function to set all these active on load
+        ascension: 1,
+        currentArea: "",
+        fightingArea: "",
+        fighting: false,
+        fightingID: "",
+        activeMainTab: "soulTab",
+        activeLowerTab: "soulMapTab",
+        activeRightMapTab: "descTab",
+        consuming: false,
+
+        //stats
+        attack: 5,
+        attackSpeed: 100,
+        defense: 0,
+        health: 20,
+        consumeRate: 1,
+    
+        //Run-specific things
+        runTotalS: 0,
+        runTotalsD: 0,
+        runTotalsL: 0,
+    
+        //All-time specific things
+        allTotalS: 0,
+        allTotalD: 0,
+        allTotalL: 0,
+    
+        //Currently owned things
+        soulTotal: 0,
+        soulDark: 0,
+        soulLight: 0,
+    
+/*         story: {
+            start: true,
+            soulStory1: true,
+        }, */
+
+        upgrades: {
+            h0: {
+                unlocked: true,
+            },
+            h1: {
+                unlocked: false,
+                cost: 1,
+            },
+            h2: {
+                unlocked: false,
+                cost: 1000,
+            },
+        },
+    };
+
     function updateSoul() {
         $("#soulCount").html(formatNumber(player.soulTotal));
     }
 
     function updatePlayerStats() {
-        $("#pLowerAtk").html(formatNumber((player.attack * soulMulti())) + "");
-        $("#pLowerDef").html(formatNumber(player.defense));
         if(!player.fighting) {
-            $("#playerHealthLabel").html(formatNumber(player.health) + " <b>|</b> " + formatNumber(player.health));
+            $("#pLowerAtk").html(formatNumber(getAttack()));
+            $("#pLowerDef").html(formatNumber(getDefense()));
+            $("#playerHealthLabel").html(formatNumber(getHealth()) + " <b>|</b> " + formatNumber(getHealth()));
             $("#playerHealthBar").css("width", "100%");
+        }
+        $("#soulMultiUpgradeSpan").html(formatNumber(soulMulti()));
+    }
+
+    function getAttack() {
+        var atk = player.attack;
+        if(player.upgrades.h2.unlocked) {
+            atk += 5;
+        }
+        if(player.upgrades.h1.unlocked) {
+            atk *= soulMulti();
+        }
+        return atk;
+    }
+
+    function getAttackSpeed() {
+        var spd = player.attackSpeed;
+        return spd;
+    }
+
+    function getDefense() {
+        var def = player.defense;
+        return def;
+    }
+
+    function getHealth() {
+        var hp = player.health;
+        return hp;
+    }
+
+    function getConsumeSpeed() {
+        var consSpeed = player.consumeRate;
+
+        consSpeed *= .01;
+        return consSpeed;
+    }
+
+    function soulMulti() {
+        if(player.soulTotal < 10) {
+            return 1;
+        }
+        else {
+            return Math.log10(player.soulTotal);
         }
     }
 
@@ -105,6 +204,42 @@ $(document).ready(function() {
         }
     });
 
+
+    var combatLogList = [];
+    var tableColorState = 0;
+    function updateCombatLog() {
+        if(combatLogList.length > 70) {
+            combatLogList.pop();
+        }
+
+        var atBottom = false;
+        var lt = $("#logTab");
+
+        if (lt[0].scrollHeight - lt.scrollTop() == lt.height())
+        {
+            atBottom = true;
+        }
+
+        $("#logTable").html("");
+        for(var i = combatLogList.length-1; i >= 0; i--) {
+            $("#logTable").append("<tr><td>" + combatLogList[i] + "</td></tr>");
+        }
+
+        if(tableColorState == 0) {
+            $("#logTable tr:nth-child(even)").css("background-color", "rgb(45, 45, 45)");
+            $("#logTable tr:nth-child(odd)").css("background-color", "rgb(35, 35, 35)");
+        }
+        else {
+            $("#logTable tr:nth-child(odd)").css("background-color", "rgb(45, 45, 45)");
+            $("#logTable tr:nth-child(even)").css("background-color", "rgb(35, 35, 35)");
+        }
+
+        if(atBottom) {
+            lt.scrollTop(lt[0].scrollHeight);
+        }
+    }
+    
+
     $("#buttonFight").click(function() {
         player.fighting = false;
         if(player.fightingArea != player.currentArea) {
@@ -131,14 +266,27 @@ $(document).ready(function() {
                 $("#leftMapPanelInnerDivSpecial").show();
             }
         }
-        endFight("flee");
+        endFight("flee", enemies[player.fightingID]);
     });
 
     var consumeLoop;
 
-    $("#buttonConsume").click(function() {
-        consume(enemies[player.fightingID]);
+    $("#buttonConsume, #soulBox").click(function() {
+        if(!player.consuming) {
+            consume(enemies[player.fightingID]);
+        }
     });
+
+    $("#buttonConsume, #soulBox").mouseenter(function() {
+        $("#soulBox").css("box-shadow", "inset 0px 0px 15px 0px black");
+    });
+    $("#buttonConsume, #soulBox").mouseleave(function() {
+        if(!player.consuming) {
+            $("#soulBox").css("box-shadow", "");
+        }
+    })
+
+
 
     $("#buttonRelease").click(function() {
         clearInterval(consumeLoop);
@@ -146,9 +294,22 @@ $(document).ready(function() {
         $("#consumeReleaseInner").hide();
         $("#buttonFight").show();
         updateFightDetails("init");
+        player.consuming = false;
+
+        var combatText = "";
+        if(enemies[player.fightingID].named) {
+            combatText = "<b><span style=\"color: white;\">You've released " + enemies[player.fightingID].name + ", letting them scurry away with their life.</span></b>";
+        }
+        else {
+            combatText = "<b><span style=\"color: white;\">You've released the " + enemies[player.fightingID].name.toLowerCase() + ", letting it scurry away alive.</span></b>";
+        }
+        combatLogList.unshift(combatText);
+        updateCombatLog();
+
         player.fighting = false;
+        player.fightingID = "";
+        updatePlayerStats();
         if(player.fightingArea != player.currentArea) {
-            updatePlayerStats();
             if(nodes.get(player.currentArea).shape != "hexagon") {
                 $(".sidePanelTitle").html("<b>"+nodes.get(player.currentArea).details.name+"</b>");
             }
@@ -203,55 +364,114 @@ $(document).ready(function() {
         if(player.fightingArea == player.currentArea) {
             $("#buttonFight").hide();
         }
+
+        var combatText = "";
+        if(enemy.named) {
+            combatText = "<b><span style=\"color: rgb(0, 140, 255);\">You have encountered " + enemy.name + ".</b></span>";
+        }
+        else {
+            if(isVowel(enemy.name.charAt(0))) {
+                combatText = "<b><span style=\"color: rgb(0, 140, 255);\">You have encountered an " + enemy.name.toLowerCase() + ".</b></span>";
+            }
+            else {
+                combatText = "<b><span style=\"color: rgb(0, 140, 255);\">You have encountered a " + enemy.name.toLowerCase() + ".</b></span>";
+            }
+        }
+        combatLogList.unshift(combatText);
+        updateCombatLog();
+
+        player.fightingID = enemy.id;
         $("#consumeReleaseInner").hide();
         $("#buttonFlee").show();
         player.fighting = true;
-        var pCurrHp = player.health;
+        var pCurrHp = getHealth();
         var pHpRatio = "100%";
         var eHpRatio = "100%";
         var eCurrHp = enemy.health;
         var pDmg;
         var eDmg;
+        var turnTimer = 0;
+        var pHp = getHealth();
+        var pAtk = getAttack();
+        var pAtkSpd = getAttackSpeed();
+        var pDef = getDefense();
 
         function fLoop() {
-            pDmg = (player.attack * soulMulti()) - enemy.defense;
-            if(pDmg < 0) {
-                pDmg = 0;
+            if(turnTimer % pAtkSpd == 0 && turnTimer != 0) {
+                pDmg = pAtk - enemy.defense;
+                if(pDmg < 0) {
+                    pDmg = 0;
+                }
+                eCurrHp -= pDmg;
+                eHpRatio = ((eCurrHp/enemy.health)*100) + "%";
+                $("#enemyHealthBar").css("width", eHpRatio);
+                $("#enemyHealthLabel").html(formatNumber(eCurrHp) + " <b>|</b> " + formatNumber(enemy.health));
+
+                if(enemy.named) {
+                    combatText = "You strike " + enemy.name + " for " + formatNumber(pDmg) + " damage.";
+                }
+                else {
+                    //add in special text instead of scratches
+                    combatText = "You strike the " + enemy.name.toLowerCase() + " for " + formatNumber(pDmg) + " damage."; 
+                    
+                }
+                combatLogList.unshift(combatText);
+                updateCombatLog();
+
+                if(eCurrHp <= 0) {
+                    endFight("won", enemy);
+                }
             }
-            eCurrHp -= pDmg;
-            eHpRatio = ((eCurrHp/enemy.health)*100) + "%";
-            $("#enemyHealthBar").css("width", eHpRatio);
-            $("#enemyHealthLabel").html(formatNumber(eCurrHp) + " <b>|</b> " + formatNumber(enemy.health));
-            if(eCurrHp <= 0) {
-                endFight("won", enemy);
-            }
-            else {
-                eDmg = enemy.attack - player.defense;
+            if (turnTimer % enemy.attackSpeed == 0 && turnTimer != 0 && !(eCurrHp <= 0)) {
+                eDmg = enemy.attack - pDef;
                 if(eDmg < 0) {
                     eDmg = 0;
                 }
                 pCurrHp -= eDmg;
-                pHpRatio = ((pCurrHp/player.health)*100) + "%";
+                pHpRatio = ((pCurrHp/pHp)*100) + "%";
                 $("#playerHealthBar").css("width", pHpRatio);
-                $("#playerHealthLabel").html(formatNumber(pCurrHp) + " <b>|</b> " + formatNumber(player.health));
+                $("#playerHealthLabel").html(formatNumber(pCurrHp) + " <b>|</b> " + formatNumber(pHp));
+                
+                if(enemy.named) {
+                    combatText = enemy.name + " combat text put it here bitch " + formatNumber(eDmg) + " damage.";
+                }
+                else {
+                    //add in special text instead of scratches
+                    combatText = "The " + enemy.name.toLowerCase() + " scratches you for " + formatNumber(eDmg) + " damage."; 
+                    
+                }
+                combatLogList.unshift(combatText);
+                updateCombatLog();
+
                 if(pCurrHp <= 0) {
                     endFight("lost", enemy);
                 }
             }
+            turnTimer += 1;
         }
-        fightLoop = setInterval(fLoop, 1000);
+        fightLoop = setInterval(fLoop, 10);
     }
 
     function endFight(reason, enemy) {
         clearInterval(fightLoop);
-        $("#playerHealthBar").css("width", "100%");
-        $("#playerHealthLabel").html(formatNumber(player.health) + " <b>|</b> " + formatNumber(player.health));
         $("#buttonFlee").hide();
+        var combatText = "";
         
         if(reason == "flee") {
+            player.fightingID = "";
             updateFightDetails("init");
             $("#buttonFight").show();
             player.fighting = false;
+            updatePlayerStats();
+            
+            if(enemy.named) {
+                combatText = "<b><span style=\"color: rgb(255, 166, 0);\">You've fled from " + enemy.name + ".</span></b>";
+            }
+            else {
+                combatText = "<b><span style=\"color: rgb(255, 166, 0);\">You've fled from the " + enemy.name.toLowerCase() + ".</span></b>";
+            }
+            combatLogList.unshift(combatText);
+            updateCombatLog();
         }
         if(reason == "won") {
             $("#soulBox").css("width", "100%");
@@ -259,7 +479,16 @@ $(document).ready(function() {
             $("#consumeReleaseInner").show();
             $("#buttonRelease").show();
             $("#buttonConsume").show();
-            player.fightingID = enemy.id;
+
+            if(enemy.named) {
+                combatText = "<b><span style=\"color: rgb(21, 180, 35);\">You've defeated " + enemy.name + ".</span></b>";
+            }
+            else {
+                combatText = "<b><span style=\"color: rgb(21, 180, 35);\">You've defeated the " + enemy.name.toLowerCase() + ".</span></b>";
+            }
+            combatLogList.unshift(combatText);
+            updateCombatLog();
+
             if($("#autofight").is(":checked")) {
                 consume(enemies[player.fightingID]);
             }
@@ -274,7 +503,7 @@ $(document).ready(function() {
                     $("#descTabBar").css("width", ratio);
                 }
             }
-            else {
+            else if (!currArea.details.mastered) {
                 currArea.details.mastered = true;
                 $("#nextAreaUnlocker").hide();
                 unlockNextArea();
@@ -282,9 +511,20 @@ $(document).ready(function() {
         }
         if(reason == "lost") {
             updateFightDetails("init");
-            console.log("player lost");
+            player.fightingID = "";
+
+            if(enemy.named) {
+                combatText = "<b><span style=\"color: rgb(249, 46, 46);\">" + enemy.name + " has defeated you.</span></b>";
+            }
+            else {
+                combatText = "<b><span style=\"color: rgb(249, 46, 46);\">The " + enemy.name.toLowerCase() + " has defeated you.</span></b>";
+            }
+            combatLogList.unshift(combatText);
+            updateCombatLog();
+
             $("#buttonFight").show();
             player.fighting = false;
+            updatePlayerStats();
             if(player.fightingArea != player.currentArea) {
                 updatePlayerStats();
                 if(nodes.get(player.currentArea).shape != "hexagon") {
@@ -301,22 +541,46 @@ $(document).ready(function() {
 
     function consume(enemy) {
         $("#buttonConsume").hide();
+        player.consuming = true;
+        player.fighting = false;
         var totalSoul = enemy.soul;
         var remainingSoul = enemy.soul;
-        var speed = player.consumeRate * .01;
+        var spd = getConsumeSpeed();
         var ratio;
+        
+        var combatText = "";
+        if(enemy.named) {
+            combatText = "You've begun to consume " + enemy.name + ".";
+        }
+        else {
+            combatText = "You've begun to consume the " + enemy.name + ".";
+        }
+        combatLogList.unshift(combatText);
+        updateCombatLog();
 
         function cLoop() {
-            if ((remainingSoul - speed) <= 0) {
-                addSoul(remainingSoul, 2);
-                addSoul(enemy.soul * 5, 1);
+            if ((remainingSoul - spd) <= 0) {
+                addSoul(remainingSoul, false);
+                addSoul(enemy.soul * 5, true);
                 $("#soulBox").css("width", "0%");
                 $("#soulBox").css("height", "0%");
+                $("#soulBox").css("box-shadow", "");
                 $("#buttonRelease").hide();
                 $("#consumeReleaseInner").hide();
                 $("#buttonFight").show();
                 clearInterval(consumeLoop);
-                player.fighting = false;
+                player.fightingID = "";
+                updatePlayerStats();
+                player.consuming = false;
+                
+                if(enemy.named) {
+                    combatText = "<b><span style=\"color: rgb(100,100,100);\">You've fully consumed " + enemy.name + ".</span></b>";
+                }
+                else {
+                    combatText = "<b><span style=\"color: rgb(100,100,100);\">You've fully consumed the " + enemy.name.toLowerCase() + ".</span></b>";
+                }
+                combatLogList.unshift(combatText);
+                updateCombatLog();
 
                 if($("#autofight").is(":checked")) {
                     fight(getEnemy(player.fightingArea));
@@ -338,9 +602,9 @@ $(document).ready(function() {
                 }
             }
             else {
-                remainingSoul -= speed;
+                remainingSoul -= spd;
                 ratio = ((remainingSoul/totalSoul)*100) + "%";
-                addSoul(speed, 2);
+                addSoul(spd, false);
                 $("#soulBox").css("width", ratio);
                 $("#soulBox").css("height", ratio);
             }
@@ -349,12 +613,12 @@ $(document).ready(function() {
         consumeLoop = setInterval(cLoop, 10);
     }
     
-    function addSoul(amnt, type) {
+    function addSoul(amnt, addDS) {
         player.soulTotal += amnt; //adds untyped soul to current, run, and alltime
         player.runTotalS += amnt;
         player.allTotalS += amnt;
     
-        if(type == 1) {
+        if(addDS) {
             player.soulDark += amnt; //adds dark soul
             player.runTotalD += amnt;
             player.allTotalD += amnt;
@@ -364,6 +628,8 @@ $(document).ready(function() {
             player.runTotalL += amnt;
             player.allTotalL += amnt;
         }
+
+        
     }
 
     function updateRightPanel() {
@@ -497,15 +763,6 @@ $(document).ready(function() {
         player.soulTotal -= x;
     }
 
-    function soulMulti() {
-        if(player.soulTotal < 10) {
-            return 1;
-        }
-        else {
-            return Math.log10(player.soulTotal);
-        }
-    }
-
 
     function formatNumber(n) {
         if(n < 1000) {
@@ -519,43 +776,11 @@ $(document).ready(function() {
         }
     }
 
-    var player = {
-        //misc shit. either move from player or run function to set all these active on load
-        ascension: 1,
-        currentArea: "",
-        fightingArea: "",
-        fighting: false,
-        fightingID: "",
-        activeMainTab: "soulTab",
-        activeLowerTab: "soulMapTab",
-        activeRightMapTab: "descTab",
+    
+    function isVowel(x) {
+        return /[aeiouAEIOU]/.test(x);
+    }
 
-        //stats
-        attack: 5,
-        defense: 0,
-        health: 20,
-        consumeRate: 1,
-    
-        //Run-specific things
-        runTotalS: 0,
-        runTotalsD: 0,
-        runTotalsL: 0,
-    
-        //All-time specific things
-        allTotalS: 0,
-        allTotalD: 0,
-        allTotalL: 0,
-    
-        //Currently owned things
-        soulTotal: 0,
-        soulDark: 0,
-        soulLight: 0,
-    
-/*         story: {
-            start: true,
-            soulStory1: true,
-        }, */
-    };
 
     function save() {
         var x = nodes.get();

@@ -138,7 +138,9 @@ var enemies = {
         attack: 3,
         defense: 1,
         soul: 5,
-        resilience: 1,
+        attackSpeed: 100,
+        attackType: "smallCreature",
+        named: false,
     },
     blackSquirrel: {
         name: "Black Squirrel",
@@ -147,15 +149,28 @@ var enemies = {
         attack: 5,
         defense: 2,
         soul: 12,
-        resilience: .8,
+        attackSpeed: 90,
+        attackType: "smallCreature",
+        named: false,
     },
     mole: {
         name: "Mole",
         id: "mole",
         health: 20,
-        attack: 2,
+        attack: 4,
         defense: 3,
         soul: 12,
-        resilience: 1.2,
+        attackSpeed: 120,
+        attackType: "smallCreature",
+        named: false,
+    },
+}
+
+var attackTypes = {
+    smallCreature: {
+        attacks: [],
+        uniqueDefeat: false,
+        uniqueConsume: false,
+
     },
 }

@@ -155,6 +155,7 @@
                             <div id="rightPanelInnerTabs">
                                 <div class="inner">
                                     <button id="logOptionsButton"></button>
+
                                     <div id="descTab" class="innerRightTabs">
                                         <div class="inner">
                                             <span id="descTabText"></span>
@@ -168,9 +169,9 @@
                                     </div>
 
                                     <div id="logTab" class="innerRightTabs">
-                                        <div class="inner">
+                                        <table id="logTable">
                                             
-                                        </div>
+                                        </table>
                                     </div>
             
                                     <div id="cloneTab" class="innerRightTabs">
@@ -191,17 +192,43 @@
             </div>
 
             <div class="soulTabPane" id="soulUpgradesTab">
-                Eventually, this will be a condensed area to see all upgrades from<br>
-                all unlocked nodes. You'll still be able to use the specific nodes<br>
-                as well, though.
+                (No upgrades yet! Soon!)
+                <div id="upgradeGroupHome" class="upgradeGroups">
+                    <span id="homeTitle" class="upgradeTitle">Home</span><br>
+
+                    <button id="homeUpgrade1Btn" class="homeUpgradeBtns">
+                        <span class="unheld">
+                            <span class="upgradeButtonTitle" style="color:rgb(0, 108, 196);"><b>Soul</b></span>
+                            Soul now amplifies your strength.<br>
+                            Current: <span id="soulMultiUpgradeSpan">1</span>x
+                        </span>
+                        <span class="held">
+                            <span class="upgradeButtonTitle"><b>H1</b></span>
+                            
+                        </span>
+                    </button>
+
+                    <button id="homeUpgrade2Btn" class="homeUpgradeBtns">
+                        <span class="unheld">
+                            <span class="upgradeButtonTitle"><b>Sharpened Claws</b></span>
+                            Increase base Attack by 5.
+                        </span>
+                        <span class="held">
+                            <span class="upgradeButtonTitle"><b>H1</b></span>
+                            A special rock to sharpen claws to a fine point.
+                        </span>
+                    </button>
+
+
+                </div>
             </div>
         </div>
 
         <div class="mainPaneTab" id="tailsTab">
             <br/>
             <div id="tailsContainer">
-                <button id="tailsButton1" class="tailsButtons">1</button> <!--  -->
-                <button id="tailsButton2" class="tailsButtons">2</button> <!--  -->
+                <button id="tailsButton1" class="tailsButtons">1</button> <!-- Have the graphic for this be a light blue flame -->
+                <button id="tailsButton2" class="tailsButtons">2</button> <!-- Color should get lighter to the right, darker left -->
                 <button id="tailsButton3" class="tailsButtons">3</button> <!--  -->
                 <button id="tailsButton4" class="tailsButtons">4</button> <!--  -->
                 <button id="tailsButton5" class="tailsButtons">5</button> <!--  -->
