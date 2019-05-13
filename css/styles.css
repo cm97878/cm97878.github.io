@@ -744,10 +744,11 @@ button:active {
     height: 80px;
     margin-bottom: 10px;
     margin-top: 5px;
+    vertical-align: top;
 }
 .homeUpgradeBtns:hover {
     background-color: rgb(0, 108, 196);
-    color: rgb(17, 17, 17);
+    color: rgb(17, 17, 17) !important;
 }
 
 
