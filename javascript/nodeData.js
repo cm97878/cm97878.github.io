@@ -174,3 +174,5 @@ var attackTypes = {
 
     },
 }
+
+

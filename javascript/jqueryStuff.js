@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    /* #region init stuff */
     $(".held").hide();
     $("#leftMapPanelInnerDiv").hide();
     $("#rightMapPanelInnerDiv").hide();
@@ -10,28 +10,14 @@ $(document).ready(function() {
     $("#buttonClone").hide();
     //nodes.get("home");
     //set default to be home here
-
     $("#buttonRelease").hide();
     $("#consumeReleaseInner").hide();
+
+    /* #endregion */
 
     $("#startButton").click(function () {
         $("#initialScreen").hide();
     });
-
-    var loopCounter = 0;
-
-    function gLoop() {
-        updateSoul();
-        if(loopCounter == 5 || loopCounter == 10) {
-            upgradeCostCheck();
-        }
-        if(loopCounter >= 10) {
-            updatePlayerStats();
-            loopCounter = 0;
-        }
-        loopCounter++;
-    }
-    var gameLoop = setInterval(gLoop, 50);
 
     var player = {
         //misc shit. either move from player or run function to set all these active on load
@@ -52,21 +38,24 @@ $(document).ready(function() {
         health: 20,
         consumeRate: 1,
     
-        //Run-specific things
-        runTotalS: 0,
-        runTotalsD: 0,
-        runTotalsL: 0,
-    
-        //All-time specific things
-        allTotalS: 0,
-        allTotalD: 0,
-        allTotalL: 0,
+        stats: {
+            //Run-specific things
+            runTotalS: 0,
+            runTotalsD: 0,
+            runTotalsL: 0,
+        
+            //All-time specific things
+            allTotalS: 0,
+            allTotalD: 0,
+            allTotalL: 0,
+        },
     
         //Currently owned things
-        soulTotal: 0,
-        soulDark: 0,
-        soulLight: 0,
-    
+        currentSoul: {
+            soulTotal: 0,
+            soulDark: 0,
+            soulLight: 0,
+        },
 /*         story: {
             start: true,
             soulStory1: true,
@@ -87,8 +76,26 @@ $(document).ready(function() {
         },
     };
 
+    /* #region gameloop */
+
+    var loopCounter = 0;
+    function gLoop() {
+        updateSoul();
+        if(loopCounter >= 10) {
+            updatePlayerStats();
+            updateUpgradeDetails();
+            loopCounter = 0;
+        }
+        loopCounter++;
+    }
+    var gameLoop = setInterval(gLoop, 50);
+
     function updateSoul() {
-        $("#soulCount").html(formatNumber(player.soulTotal));
+        $("#soulCount").html(formatNumber(player.currentSoul.soulTotal));
+    }
+
+    function updateUpgradeDetails() {
+        $("#soulMultiUpgradeSpan").html(formatNumber(soulMulti()));
     }
 
     function updatePlayerStats() {
@@ -98,8 +105,11 @@ $(document).ready(function() {
             $("#playerHealthLabel").html(formatNumber(getHealth()) + " <b>|</b> " + formatNumber(getHealth()));
             $("#playerHealthBar").css("width", "100%");
         }
-        $("#soulMultiUpgradeSpan").html(formatNumber(soulMulti()));
     }
+
+    /* #endregion */
+
+    /* #region getters */
 
     function getAttack() {
         var atk = player.attack;
@@ -135,13 +145,15 @@ $(document).ready(function() {
     }
 
     function soulMulti() {
-        if(player.soulTotal < 10) {
+        if(player.currentSoul.soulTotal < 10) {
             return 1;
         }
         else {
-            return Math.log10(player.soulTotal);
+            return Math.log10(player.currentSoul.soulTotal);
         }
     }
+
+    /* #endregion */
 
     //Hold shift to change texts
     $(document).bind('keydown',function(e) {
@@ -204,6 +216,7 @@ $(document).ready(function() {
         }
     });
 
+    /* #region combat stuff */
 
     var combatLogList = [];
     var tableColorState = 0;
@@ -239,7 +252,6 @@ $(document).ready(function() {
         }
     }
     
-
     $("#buttonFight").click(function() {
         player.fighting = false;
         if(player.fightingArea != player.currentArea) {
@@ -285,7 +297,6 @@ $(document).ready(function() {
             $("#soulBox").css("box-shadow", "");
         }
     })
-
 
 
     $("#buttonRelease").click(function() {
@@ -359,7 +370,6 @@ $(document).ready(function() {
     }
 
     var fightLoop;
-
     function fight(enemy) {
         if(player.fightingArea == player.currentArea) {
             $("#buttonFight").hide();
@@ -612,21 +622,23 @@ $(document).ready(function() {
         }
         consumeLoop = setInterval(cLoop, 10);
     }
+
+    /* #endregion */
     
     function addSoul(amnt, addDS) {
-        player.soulTotal += amnt; //adds untyped soul to current, run, and alltime
-        player.runTotalS += amnt;
-        player.allTotalS += amnt;
+        player.currentSoul.soulTotal += amnt; //adds untyped soul to current, run, and alltime
+        player.stats.runTotalS += amnt;
+        player.stats.allTotalS += amnt;
     
         if(addDS) {
-            player.soulDark += amnt; //adds dark soul
-            player.runTotalD += amnt;
-            player.allTotalD += amnt;
+            player.currentSoul.soulDark += amnt; //adds dark soul
+            player.stats.runTotalD += amnt;
+            player.stats.allTotalD += amnt;
         }
         else {
-            player.soulLight += amnt; //adds light soul
-            player.runTotalL += amnt;
-            player.allTotalL += amnt;
+            player.currentSoul.soulLight += amnt; //adds light soul
+            player.stats.runTotalL += amnt;
+            player.stats.allTotalL += amnt;
         }
 
         
@@ -760,7 +772,8 @@ $(document).ready(function() {
     openOptionsTab = "";
 
     function removeSoul(x) {
-        player.soulTotal -= x;
+        player.currentSoul.soulTotal -= x;
+        updateSoul();
     }
 
 
@@ -797,7 +810,7 @@ $(document).ready(function() {
         localStorage.removeItem('nodes');
     });
 
-    //================MAP SETUP================
+    /* #region map setup */
     var container = document.getElementById('map1');
 
     var options = {
@@ -918,5 +931,33 @@ $(document).ready(function() {
     $("#centerMap").click(function () {
         network.fit();
     });
-    //================MAP SETUP================
+    /* #endregion */
+
+    /* #region vue stuff */
+    var homeGroup = new Vue({ 
+        el: '#upgradeGroupHome',
+        data: {
+            h0: player.upgrades.h0,
+            h1: player.upgrades.h1,
+            h2: player.upgrades.h2,
+            soul: player.currentSoul
+        }
+    });
+
+    /* #endregion */
+
+    /* #region upgrade buttons */
+
+    $("#homeUpgrade1Button").click(function () {
+        player.upgrades.h1.unlocked = true;
+        removeSoul(player.upgrades.h1.cost);
+    });
+
+    $("#homeUpgrade2Button").click(function () {
+        player.upgrades.h2.unlocked = true;
+        removeSoul(player.upgrades.h2.cost);
+    });
+
+    /* #endregion */
+
 });
