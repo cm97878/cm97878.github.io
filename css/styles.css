@@ -73,9 +73,6 @@ button[disabled] {
     color: rgb(12, 12, 12);
 }
 /* =======================Top Information=========================== */
-#currSoul {
-    text-align: center;
-}
 
 #soulCount {
     font-size: 30px;
@@ -98,17 +95,24 @@ button[disabled] {
 }
 
 #soulBeads {
-    display: none;
+
+}
+
+#topCurrencies {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 #soulBeadsBeta {
-    display: none;
+    
 }
 
 #beadBeta {
     color: rgb(247, 247, 247);
-    background: rgb(12, 12, 12);
-    width: 140px;
+    background: rgb(83, 83, 83);
+    width: 70px;
     padding-left: 2px;
     padding-right: 2px;
 }

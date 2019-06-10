@@ -12,6 +12,8 @@ $(document).ready(function() {
     //set default to be home here
     $("#buttonRelease").hide();
     $("#consumeReleaseInner").hide();
+    $("#soulBeads").hide();
+    $("#soulBeadsBeta").hide();
 
     /* #endregion */
 
@@ -934,7 +936,7 @@ $(document).ready(function() {
     /* #endregion */
 
     /* #region vue stuff */
-    var homeGroup = new Vue({ 
+    var mainVue = new Vue({ 
         el: '#upgradeGroupHome',
         data: {
             h0: player.upgrades.h0,
@@ -943,6 +945,13 @@ $(document).ready(function() {
             soul: player.currentSoul
         }
     });
+
+    /* 
+    if(!upgrade.unlocked && !upgrade.buyable && upgrade.cost < player.soul) {
+        upgrade.buyable = true;
+        button.disabled = false;
+    }
+    */
 
     /* #endregion */
 
