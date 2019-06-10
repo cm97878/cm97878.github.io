@@ -192,36 +192,12 @@
                 <div id="upgradeGroupHome" class="upgradeGroups" v-if="h0.unlocked">
                     <span id="homeTitle" class="upgradeTitle">Home</span><br>
 
-                    <button id="homeUpgrade1Button" class="homeUpgradeBtns homeUpgradesBought" disabled v-if="h1.unlocked">
+                    <button id="homeUpgrade1Button" class="homeUpgradeBtns" disabled>
                         <span class="unheld">
                             <span class="upgradeButtonTitle"><b>Soul Harnessing</b></span>
                             Soul now amplifies your strength.<br>
                             Current: <span id="soulMultiUpgradeSpan">1</span>x<br>
-                            <span class="upgradeButtonCost">Cost: {{h1.cost}} Soul</span>
-                        </span>
-                        <span class="held">
-                            <span class="upgradeButtonTitle"><b>h1</b></span>
-                            Utilize the soul you've stolen to empower yourself.
-                        </span>
-                    </button>
-                    <button id="homeUpgrade1Button" class="homeUpgradeBtns" v-else-if="soul.soulTotal >= h1.cost">
-                        <span class="unheld">
-                            <span class="upgradeButtonTitle"><b>Soul Harnessing</b></span>
-                            Soul now amplifies your strength.<br>
-                            Current: <span id="soulMultiUpgradeSpan">1</span>x<br>
-                            <span class="upgradeButtonCost">Cost: {{h1.cost}} Soul</span>
-                        </span>
-                        <span class="held">
-                            <span class="upgradeButtonTitle"><b>h1</b></span>
-                            Utilize the soul you've stolen to empower yourself.
-                        </span>
-                    </button>
-                    <button id="homeUpgrade1Button" class="homeUpgradeBtns" v-else disabled>
-                        <span class="unheld">
-                            <span class="upgradeButtonTitle"><b>Soul Harnessing</b></span>
-                            Soul now amplifies your strength.<br>
-                            Current: <span id="soulMultiUpgradeSpan">1</span>x<br>
-                            <span class="upgradeButtonCost">Cost: {{h1.cost}} Soul</span>
+                            <span class="upgradeButtonCostMain">Cost: 1 Soul</span>
                         </span>
                         <span class="held">
                             <span class="upgradeButtonTitle"><b>h1</b></span>
@@ -229,42 +205,17 @@
                         </span>
                     </button>
 
-
-
-                    <button id="homeUpgrade2Button" class="homeUpgradeBtns homeUpgradesBought" disabled v-if="h2.unlocked">
+                    <button id="homeUpgrade2Button" class="homeUpgradeBtns" disabled>
                         <span class="unheld">
                             <span class="upgradeButtonTitle"><b>Sharpened Claws</b></span>
                             Increase your base Attack by 5.<br>
-                            <span class="upgradeButtonCost">Cost: {{h2.cost}} Soul</span>
+                            <span class="upgradeButtonCostMain">Cost: 1000 Soul</span>
                         </span>
                         <span class="held">
                             <span class="upgradeButtonTitle"><b>h2</b></span>
                             A special rock to sharpen claws to a fine point.
                         </span>
                     </button>
-                    <button id="homeUpgrade2Button" class="homeUpgradeBtns" v-else-if="soul.soulTotal >= h2.cost">
-                        <span class="unheld">
-                            <span class="upgradeButtonTitle"><b>Sharpened Claws</b></span>
-                            Increase your base Attack by 5.<br>
-                            <span class="upgradeButtonCost">Cost: {{h2.cost}} Soul</span>
-                        </span>
-                        <span class="held">
-                            <span class="upgradeButtonTitle"><b>h2</b></span>
-                            A special rock to sharpen claws to a fine point.
-                        </span>
-                    </button>
-                    <button id="homeUpgrade2Button" class="homeUpgradeBtns" v-else disabled>
-                        <span class="unheld">
-                            <span class="upgradeButtonTitle"><b>Sharpened Claws</b></span>
-                            Increase your base Attack by 5.<br>
-                            <span class="upgradeButtonCost">Cost: {{h2.cost}} Soul</span>
-                        </span>
-                        <span class="held">
-                            <span class="upgradeButtonTitle"><b>h2</b></span>
-                            A special rock to sharpen claws to a fine point.
-                        </span>
-                    </button>
-
 
                 </div>
             </div>

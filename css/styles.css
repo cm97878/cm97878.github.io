@@ -749,7 +749,7 @@ button[disabled] {
     display: block;
 }
 
-.upgradeButtonCost {
+.upgradeButtonCostMain {
     margin-top: 5px;
     display: block;
 }

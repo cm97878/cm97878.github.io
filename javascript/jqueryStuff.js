@@ -935,16 +935,6 @@ $(document).ready(function() {
     });
     /* #endregion */
 
-    /* #region vue stuff */
-    var mainVue = new Vue({ 
-        el: '#upgradeGroupHome',
-        data: {
-            h0: player.upgrades.h0,
-            h1: player.upgrades.h1,
-            h2: player.upgrades.h2,
-            soul: player.currentSoul
-        }
-    });
 
     /* 
     if(!upgrade.unlocked && !upgrade.buyable && upgrade.cost < player.soul) {
@@ -952,8 +942,6 @@ $(document).ready(function() {
         button.disabled = false;
     }
     */
-
-    /* #endregion */
 
     /* #region upgrade buttons */
 
