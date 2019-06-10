@@ -69,10 +69,14 @@ $(document).ready(function() {
             },
             h1: {
                 unlocked: false,
+                canPurcahse: false,
+                id: "homeUpgrade1Button",
                 cost: 1,
             },
             h2: {
                 unlocked: false,
+                canPurcahse: false,
+                id: "homeUpgrade2Button",
                 cost: 1000,
             },
         },
@@ -83,10 +87,13 @@ $(document).ready(function() {
     var loopCounter = 0;
     function gLoop() {
         updateSoul();
-        if(loopCounter >= 10) {
+        if(loopCounter % 10 == 0) {
             updatePlayerStats();
             updateUpgradeDetails();
             loopCounter = 0;
+        }
+        if(loopCounter%5 == 0) {
+            updateUpgradeUnlocks();
         }
         loopCounter++;
     }
@@ -94,6 +101,30 @@ $(document).ready(function() {
 
     function updateSoul() {
         $("#soulCount").html(formatNumber(player.currentSoul.soulTotal));
+    }
+
+    function updateUpgradeUnlocks() {
+        upgradeList.forEach(function(name) {
+            if(!player.upgrades[name].unlocked && !player.upgrades[name].canPurcahse && 
+                player.upgrades[name].cost <= player.currentSoul.soulTotal) {
+
+                player.upgrades[name].canPurchase = true;
+                $("#"+player.upgrades[name].id).prop("disabled",false);
+            }
+        });
+    }
+
+    var upgradeList = ["h1", "h2"];
+
+    function updateUpgradeUnlocksPurchased() {
+        upgradeList.forEach(function(name) {
+            if(!player.upgrades[name].unlocked && !player.upgrades[name].canPurcahse &&
+                    player.upgrades[name].cost > player.currentSoul.soulTotal) {
+
+                player.upgrades[name].canPurchase = false;
+                $("#"+player.upgrades[name].id).prop("disabled",true);
+            }
+        });
     }
 
     function updateUpgradeDetails() {
@@ -776,6 +807,7 @@ $(document).ready(function() {
     function removeSoul(x) {
         player.currentSoul.soulTotal -= x;
         updateSoul();
+        updateUpgradeUnlocksPurchased();
     }
 
 
@@ -935,23 +967,19 @@ $(document).ready(function() {
     });
     /* #endregion */
 
-
-    /* 
-    if(!upgrade.unlocked && !upgrade.buyable && upgrade.cost < player.soul) {
-        upgrade.buyable = true;
-        button.disabled = false;
-    }
-    */
-
     /* #region upgrade buttons */
 
     $("#homeUpgrade1Button").click(function () {
         player.upgrades.h1.unlocked = true;
+        $(this).addClass("homeUpgradesBought");
+        $(this).prop("disabled", true);
         removeSoul(player.upgrades.h1.cost);
     });
 
     $("#homeUpgrade2Button").click(function () {
         player.upgrades.h2.unlocked = true;
+        $(this).addClass("homeUpgradesBought");
+        $(this).prop("disabled", true);
         removeSoul(player.upgrades.h2.cost);
     });
 

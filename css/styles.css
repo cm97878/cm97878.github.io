@@ -728,10 +728,6 @@ button[disabled] {
     color: rgb(0, 108, 196);
 }
 
-.upgradesLocked {
-    background-color: rgb(117, 117, 117) !important;
-}
-
 .upgradeGroups {
     width: 1200px;
     margin-left: auto;
