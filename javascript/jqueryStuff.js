@@ -69,15 +69,21 @@ $(document).ready(function() {
             },
             h1: {
                 unlocked: false,
-                canPurcahse: false,
+                canPurchase: false,
                 id: "homeUpgrade1Button",
                 cost: 1,
             },
             h2: {
                 unlocked: false,
-                canPurcahse: false,
+                canPurchase: false,
                 id: "homeUpgrade2Button",
                 cost: 1000,
+            },
+            h3: {
+                unlocked: false,
+                canPurchase: false,
+                id: "homeUpgrade3Button",
+                cost: 12,
             },
         },
     };
@@ -92,7 +98,7 @@ $(document).ready(function() {
             updateUpgradeDetails();
             loopCounter = 0;
         }
-        if(loopCounter%5 == 0) {
+        if(loopCounter%2 == 0) {
             updateUpgradeUnlocks();
         }
         loopCounter++;
@@ -105,7 +111,7 @@ $(document).ready(function() {
 
     function updateUpgradeUnlocks() {
         upgradeList.forEach(function(name) {
-            if(!player.upgrades[name].unlocked && !player.upgrades[name].canPurcahse && 
+            if(!player.upgrades[name].unlocked && !player.upgrades[name].canPurchase && 
                 player.upgrades[name].cost <= player.currentSoul.soulTotal) {
 
                 player.upgrades[name].canPurchase = true;
@@ -114,11 +120,11 @@ $(document).ready(function() {
         });
     }
 
-    var upgradeList = ["h1", "h2"];
+    var upgradeList = ["h1", "h2", "h3"];
 
     function updateUpgradeUnlocksPurchased() {
         upgradeList.forEach(function(name) {
-            if(!player.upgrades[name].unlocked && !player.upgrades[name].canPurcahse &&
+            if(!player.upgrades[name].unlocked && !player.upgrades[name].canPurchase &&
                     player.upgrades[name].cost > player.currentSoul.soulTotal) {
 
                 player.upgrades[name].canPurchase = false;
@@ -172,7 +178,9 @@ $(document).ready(function() {
 
     function getConsumeSpeed() {
         var consSpeed = player.consumeRate;
-
+        if(player.upgrades.h3.unlocked) {
+            consSpeed *= 1.2;
+        }
         consSpeed *= .01;
         return consSpeed;
     }
@@ -981,6 +989,13 @@ $(document).ready(function() {
         $(this).addClass("homeUpgradesBought");
         $(this).prop("disabled", true);
         removeSoul(player.upgrades.h2.cost);
+    });
+
+    $("#homeUpgrade3Button").click(function () {
+        player.upgrades.h3.unlocked = true;
+        $(this).addClass("homeUpgradesBought");
+        $(this).prop("disabled", true);
+        removeSoul(player.upgrades.h3.cost);
     });
 
     /* #endregion */

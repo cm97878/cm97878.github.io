@@ -109,12 +109,25 @@ var nodes = new vis.DataSet([
             name: 'Rocky Trail'}},
 ]);
 
+/*
+    {id: '',  
+        x: , 
+        y: ,
+        group: '',
+        details: {
+            description: "",
+            enemies: [],
+            chance: [],
+            toKill: ,
+            killed: 0,
+            mastered: false,
+            toUnlock: [],
+            name: ''}},
+*/
+
 var edges = new vis.DataSet([
     {id: "home-trailNorth1", 
         from: 'home', to: 'trailNorth1'},
-
-    {id: "home-trailSouth1",
-        from: 'home', to: 'trailSouth1'},
 
     {id: "trailNorth1-trailNorth2", 
         from: 'trailNorth1', to: 'trailNorth2'},
@@ -127,8 +140,15 @@ var edges = new vis.DataSet([
 
     {id: "trailNorth2-trailRiver1",
         from: 'trailNorth2', to: 'trailRiver1'},
-]);
 
+
+    {id: "home-trailSouth1",
+        from: 'home', to: 'trailSouth1'},
+]);
+/*
+    {id: "-",
+        from: '', to: ''},
+*/
 
 var enemies = {
     redSquirrel: {
@@ -164,7 +184,33 @@ var enemies = {
         attackType: "smallCreature",
         named: false,
     },
+    rat: {
+        name: "Rat",
+        id: "rat",
+        health: 20,
+        attack: 7,
+        defense: 2,
+        soul: 17,
+        attackSpeed: 75,
+        attackType: "smallCreature",
+        named: false,
+    },
 }
+
+
+/*
+    : {
+        name: "",
+        id: "",
+        health: ,
+        attack: ,
+        defense: ,
+        soul: ,
+        attackSpeed: ,
+        attackType: "smallCreature",
+        named: false,
+    },
+*/
 
 var attackTypes = {
     smallCreature: {
