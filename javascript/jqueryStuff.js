@@ -21,8 +21,9 @@ $(document).ready(function() {
         $("#initialScreen").hide();
     });
 
+    //The thing to be saved/loaded
     var player = {
-        //misc shit. either move from player or run function to set all these active on load
+        //misc stuff. either move from player or run function to set all these active on load
         ascension: 1,
         currentArea: "",
         fightingArea: "",
@@ -484,11 +485,10 @@ $(document).ready(function() {
                 $("#playerHealthLabel").html(formatNumber(pCurrHp) + " <b>|</b> " + formatNumber(pHp));
                 
                 if(enemy.named) {
-                    combatText = enemy.name + " combat text put it here bitch " + formatNumber(eDmg) + " damage.";
+                    combatText = enemy.name + " put unique text here " + formatNumber(eDmg) + " damage.";
                 }
                 else {
-                    //add in special text instead of scratches
-                    combatText = "The " + enemy.name.toLowerCase() + " scratches you for " + formatNumber(eDmg) + " damage."; 
+                    combatText = "The " + enemy.name.toLowerCase() + " strikes you for " + formatNumber(eDmg) + " damage."; 
                     
                 }
                 combatLogList.unshift(combatText);
