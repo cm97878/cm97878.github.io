@@ -97,10 +97,8 @@ $(document).ready(function() {
         if(loopCounter % 10 == 0) {
             updatePlayerStats();
             updateUpgradeDetails();
-            loopCounter = 0;
-        }
-        if(loopCounter%2 == 0) {
             updateUpgradeUnlocks();
+            loopCounter = 0;
         }
         loopCounter++;
     }
