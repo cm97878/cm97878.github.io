@@ -1,0 +1,398 @@
+<!DOCTYPE html5>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Kitsune</title>
+    <link rel="icon" href="..\fox_sprite.png">
+    <link rel="stylesheet" href="css(old)/styles.css">
+    <script src="javascript(old)/vis.min.js"></script>
+    <link href="css(old)/vis.min.css" rel="stylesheet" type="text/css" />
+    <script src="javascript(old)/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <div id="topCurrencies"> <!-- Top currencies, including soul, light/dark beads, etc -->
+        You have<br/><span id="soulCount">0</span><br/>soul.<br/>
+        <div id="soulBeads">
+            <span id="lightBead" class="borderFit">0</span><span id="darkBead" class="borderFit">0</span>
+        </div>
+        <span id="soulBeadsBeta"><span id="beadBeta" class=borderFit>0</span></span>
+    </div>
+    
+    <div id="mainPane"> <!-- Entire bottom part, including buttons and swapping panels -->
+        <div id="mainButtonsRow">
+            <button id="soulButton" class="button topButtons">Soul</button>
+            <button id="tailsButton" class="button topButtons">Tails</button>
+            <button id="crystalsButton" class="button topButtons">Crystals</button>
+            <button id="mansionButton" class="button topButtons">Mansion</button>
+            <button id="storyButton" class="button topButtons">Story</button>
+            <button id="optionsButton" class="button topButtons">Options</button>
+            <button id="statsButton" class="button topButtons">Statistics</button>
+        </div>
+
+        <div class="mainPaneTab" id="soulTab">
+            <button id="soulMapButton" class="button lowerButtons">Map</button>
+            <button id="soulUpgradesButton" class="button lowerButtons">Upgrades</button>
+
+            <br/>
+
+            <div class="soulTabPane" id="soulMapTab">
+                <div class="inner">
+                    <div id="leftMapPanel" class="mapPanelsAll mapSidePanels">
+                        <div id="leftMapPanelInnerDiv">
+                            <div id="leftSidePanelTitle" class="sidePanelTitle">
+                                undefined
+                            </div>
+                            <button id="buttonFight">Fight</button>
+                            <button id="buttonFlee">Flee</button>
+                            <button id="buttonRelease">Release</button>
+                            <div id="fightDetails">
+                                <div id="playerName">
+                                    <b>Name</b>
+                                </div>
+                                <!----------------------------------------------->
+                                <div id="playerStatsBox">
+                                    <div class="inner">
+                                        <div id="playerHealthBackground">
+                                            <div id="playerHealthBar"></div>
+                                        </div>
+                                        <div id="playerAttack">
+                                            <div class="inner">
+                                                <div id="pUpperAtk">
+                                                    Attack
+                                                </div>
+                                                <div id="pLowerAtk">
+                                                    1.8e308
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span id="playerHealthLabel">1.8e308 <b>|</b> 1.8e308</span>
+                                        <div id="autofightBox">
+                                            <div class="inner">
+                                                <input id="autofight" title="Autofight" type="checkbox">
+                                                <span id="autofightLabel">Autofight</span>
+                                            </div>
+                                        </div>
+                                        <div id="playerDefense">
+                                            <div class="inner">
+                                                <div id="pUpperDef">
+                                                    Defense
+                                                </div>
+                                                <div id="pLowerDef">
+                                                    1.8e308
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!----------------------------------------------->
+                                <div id="consumeRelease">
+                                    <div class="inner" id="consumeReleaseInner">
+                                        <div id="soulBoxBackground"></div>
+                                        <div id="soulBox"></div>
+                                        <button id="buttonConsume">Consume</button>
+                                    </div>
+                                </div>
+                                <!----------------------------------------------->
+                                <div id="enemyStatsBox">
+                                    <div class="inner">
+                                        <div id="enemyDefense">
+                                            <div class="inner">
+                                                <div id="eUpperDef">
+                                                    1.8e308
+                                                </div>
+                                                <div id="eLowerDef">
+                                                    Defense
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="autoreleaseBox">
+                                            <div class="inner">
+                                                <input id="autorelease" title="Autorelease" type="checkbox">
+                                                <span id="autoreleaseLabel">Autorelease</span>
+                                            </div>
+                                        </div>
+                                        <span id="enemyHealthLabel">1.8e308 <b>|</b> 1.8e308</span>
+                                        <div id="enemyAttack">
+                                            <div class="inner">
+                                                <div id="eUpperAtk">
+                                                    1.8e308
+                                                </div>
+                                                <div id="eLowerAtk">
+                                                    Attack
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="enemyHealthBackground">
+                                            <div id="enemyHealthBar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="enemyName">
+                                    <b></b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="leftMapPanelInnerDivSpecial">
+                            This is a special div for special nodes. Left side.
+                        </div>
+                    </div>
+
+                    <div id="map1" class="mapPanelsAll"></div>
+
+                    <div id="rightMapPanel" class="mapPanelsAll mapSidePanels">
+                        <div id="rightMapPanelInnerDiv">
+                            <div id="rightSidePanelTitle" class="sidePanelTitle"></div>
+                            <button id="buttonDesc" class="buttonRightPanel">Description</button>
+                            <button id="buttonLog" class="buttonRightPanel">Combat Log</button>
+                            <button id="buttonClone" class="buttonRightPanel">Clones</button>
+                            <div id="rightPanelInnerTabs">
+                                <div class="inner">
+                                    <button id="logOptionsButton"></button>
+
+                                    <div id="descTab" class="innerRightTabs">
+                                        <div class="inner">
+                                            <span id="descTabText"></span>
+                                            <div id="nextAreaUnlocker">
+                                                <div id="descTabBarBackground">
+                                                    <div id="descTabBar"></div>
+                                                </div>
+                                                <div id="descTabEnemiesKilled"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="logTab" class="innerRightTabs">
+                                        <table id="logTable">
+                                            
+                                        </table>
+                                    </div>
+            
+                                    <div id="cloneTab" class="innerRightTabs">
+                                        <div class="inner">
+            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="rightMapPanelInnerDivSpecial">
+                            This is a special div for special nodes. Right side.
+                        </div>
+                    </div>
+                    <button id="centerMap">C</button>
+                </div>
+            </div>
+
+            <div class="soulTabPane" id="soulUpgradesTab">
+
+                <div id="upgradeGroupHome" class="upgradeGroups">
+                    <span id="homeTitle" class="upgradeTitle">Home</span><br>
+
+                    <button id="homeUpgrade1Button" class="homeUpgradeBtns" disabled>
+                        <span class="unheld">
+                            <span class="upgradeButtonTitle"><b>Soul Harnessing</b></span>
+                            Soul now amplifies your strength.<br>
+                            Current: <span id="soulMultiUpgradeSpan">1</span>x<br>
+                            <span class="upgradeButtonCostMain">Cost: 1 Soul</span>
+                        </span>
+                        <span class="held">
+                            <span class="upgradeButtonTitle"><b>h1</b></span>
+                            Utilize the soul you've stolen to empower yourself.
+                        </span>
+                    </button>
+
+                    <button id="homeUpgrade2Button" class="homeUpgradeBtns" disabled>
+                        <span class="unheld">
+                            <span class="upgradeButtonTitle"><b>Sharpened Claws</b></span>
+                            Increase your base Attack by 5.<br>
+                            <span class="upgradeButtonCostMain">Cost: 1000 Soul</span>
+                        </span>
+                        <span class="held">
+                            <span class="upgradeButtonTitle"><b>h2</b></span>
+                            A grooved rock to sharpen claws to a fine point.
+                        </span>
+                    </button>
+
+                    <button id="homeUpgrade3Button" class="homeUpgradeBtns" disabled>
+                            <span class="unheld">
+                                <span class="upgradeButtonTitle"><b>Shiny Rock</b></span>
+                                Increase your consume rate by 20%.<br>
+                                <span class="upgradeButtonCostMain">Cost: 1200 Soul</span>
+                            </span>
+                            <span class="held">
+                                <span class="upgradeButtonTitle"><b>h3</b></span>
+                                A shiny rock that seems to help you absorb soul from creatures.
+                            </span>
+                        </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="mainPaneTab" id="tailsTab">
+            <br/>
+            <div id="tailsContainer">
+                <button id="tailsButton1" class="tailsButtons">1</button> <!-- Have the graphic for this be a light blue flame -->
+                <button id="tailsButton2" class="tailsButtons">2</button> <!-- Color should get lighter to the right, darker left -->
+                <button id="tailsButton3" class="tailsButtons">3</button> <!--  -->
+                <button id="tailsButton4" class="tailsButtons">4</button> <!--  -->
+                <button id="tailsButton5" class="tailsButtons">5</button> <!--  -->
+                <button id="tailsButton6" class="tailsButtons">6</button> <!--  -->
+                <button id="tailsButton7" class="tailsButtons">7</button> <!--  -->
+                <button id="tailsButton8" class="tailsButtons">8</button> <!--  -->
+                <button id="tailsButton9" class="tailsButtons">9</button> <!--  -->
+                <!--========================Panel Type 1================================-->
+                <div id="tailsInnerPanel11" class="tailsInnerPanel">
+                    This will be unlocked from the start, but initially only show a single graphic, one tail straight up the middle.
+                    As you hit each threshhold, the next appears, up to the 9th.
+                    After that you reset, and a button appears over the first, which unlocks a middle pane with new upgrades. Each
+                    of these panels is different.
+                </div>
+                <div id="tailsInnerPanel21" class="tailsInnerPanel">
+                    21
+                </div>
+                <div id="tailsInnerPanel31" class="tailsInnerPanel">
+                    31
+                </div>
+                <div id="tailsInnerPanel41" class="tailsInnerPanel">
+                    41
+                </div>
+                <div id="tailsInnerPanel51" class="tailsInnerPanel">
+                    51
+                </div>
+                <div id="tailsInnerPanel61" class="tailsInnerPanel">
+                    61
+                </div>
+                <div id="tailsInnerPanel71" class="tailsInnerPanel">
+                    71
+                </div>
+                <div id="tailsInnerPanel81" class="tailsInnerPanel">
+                    81
+                </div>
+                <div id="tailsInnerPanel91" class="tailsInnerPanel">
+                    91
+                </div>
+                <!--========================Panel Type 2================================--> 
+                <div id="tailsInnerPanel12" class="tailsInnerPanel">
+                    b
+                </div>
+                <div id="tailsInnerPanel22" class="tailsInnerPanel">
+                    d
+                </div>
+                <div id="tailsInnerPanel32" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel42" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel52" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel62" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel72" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel82" class="tailsInnerPanel">
+                    
+                </div>
+                <div id="tailsInnerPanel92" class="tailsInnerPanel">
+                    
+                </div>
+            </div>
+            <br/><br/><br/>
+            <button id="ascensionButton" class="button">Ascend</button>
+            
+        </div>
+
+        <div class="mainPaneTab" id="crystalsTab">
+            Crystals Tab<br/>
+        </div>
+
+        <div class="mainPaneTab" id="mansionTab">
+            Mansion Tab<br/>
+        </div>
+
+<!--         <div class="mainPaneTab" id="storyTab">
+            <div id="storyTabCatDiv">
+                <button id="storySoulButton" class="button storyTabButtons">Soul</button>
+                <button id="storyTailsButton" class="button storyTabButtons">Tails</button>
+                <button id="storyBeadsButton" class="button storyTabButtons">Beads</button>
+                <button id="storyAscensionButton" class="button storyTabButtons">Beads</button>
+            </div> <br/>
+            <div id="storyTextPane">
+                <div id="storySoulCat" class="storyTabCategories">
+                    <span id="ss1" class="storyBits">Test</span>
+                </div>
+    
+                <div id="storyTailsCat" class="storyTabCategories">
+                    <span id="st1" class="storyBits">test</span>
+                </div>
+    
+                <div id="storyBeadsCat" class="storyTabCategories">
+                    beads
+                </div>
+    
+                <div id="storyAscensionCat" class="storyTabCategories">
+    
+                </div>
+            </div>
+        </div> -->
+
+        <div class="mainPaneTab" id="optionsTab">
+            Options Tab<br/>
+            Hey, actual options! Kinda. They don't <i>work</i>, but they're there!<br><br>
+            <button id="saveButton">Save</button>
+            <button id="clearButton">Clear Data</button>
+        </div>
+
+        <div class="mainPaneTab" id="statsTab">
+            Stats Tab<br/>
+            Run stats, all time stats, things like that.
+        </div>
+
+    </div>
+    
+    <div id="initialScreen">
+        <div id="introText">
+            <span class="bigText">Kitsu</span><spam class="bigText orange">ne</spam><br><br>
+            <div id="changelogDiv" class="borderFit">
+                A changelog would probably go here. Or somethin' like that. for now, I'll use it to explain
+                the game instead! The basic premise is that the 'player character' is a fox, 
+                and the game starts off with it killing creatures and absorbing soul. The progression comes in the form of that soul
+                acting as a multiplier to some combat stats, and also is used to buy upgrades. After enough, another tail is gained, and at 9,
+                you can reset pretty much everything in order to gain the first prestige currency,
+                which unlocks new and more powerful upgrades, so on and so forth.<br><br>
+                To start, click one of the two circular nodes. Click fight. You should be able to kill one enemy, but cannot
+                kill the other. Click 'consume' after that, and you'll gain Soul. Each enemy gives you a certain amount,
+                and then 5x that amount on death; 5 base, 25 on death, for 30 total, for example.
+                <br><br>
+                The bar at the bottom right, a grey bar with x/y on it, means you need to kill y enemies to unlock new nodes,
+                and have killed x enemies so far. I set this to 1 for most of them, just so I can quickly make sure it all works.
+                <br><br>
+                The Tails tab will eventually update as more tails are gained, and those buttons won't appear until you've gotten
+                the 9th and reset the game (and only the 1st will appear at that point).
+                <br><br>
+                Eventually you'll unlock new special nodes, like the starting node. These will always have upgrades, and may
+                have or unlock new mechanics.
+                <br><br>
+                Oh, and the C button will recenter the map, 'cause you can scroll infinitely out and to the sides.
+            </div><br>
+            <button id="startButton" class="button">Start</button>
+        </div>
+    </div>
+
+    <div id="logOptionsDiv" class="popupOptionsDiv">
+
+    </div>
+    
+    <script src="javascript(old)/nodeData.js"></script>
+    <script src="javascript(old)/jqueryStuff.js"></script>
+    <script src="javascript(old)/math.min.js"></script>
+</body>
+</html> 
+

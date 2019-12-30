@@ -1,12 +1,8 @@
-
 body {
     background: rgb(37, 37, 37);
     color: rgb(206, 206, 206);
-}
-
-table, td {
-    border: none;
-    border-collapse: collapse;
+    text-align: center;
+    font-size: 1vw;
 }
 
 button {
@@ -20,1233 +16,127 @@ button[disabled] {
     pointer-events: none;
 }
 
-
-#initialScreen {
-    position: absolute;
-    top: 0; 
-    right: 0; 
-    bottom: 0; 
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(37, 37, 37);
+.smallHelperText {
+    font-size: .75vw;
 }
 
-#introText {
-    top: 0; 
-    right: 0; 
-    bottom: 0; 
-    left: 0;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 80px;
-    position: absolute;
-}
-
-.bigText {
-    font-size: 60px;
-}
-.orange {
-    color: rgb(255, 166, 0);
-}
-
-#changelogDiv {
-    width: 700px;
-    height: 420px;
-    margin-top: 10px;
-    display: inline-block;
-    text-align: left;
-    overflow-y: scroll;
-}
-
-#startButton {
-    border: 1px solid rgb(0, 140, 255);
-    background-color: rgb(71, 71, 71);
-    color: rgb(247, 247, 247);
-    width: 120px;
-    font-size: 18px;
-    margin-top: 20px;
-}
-#startButton:hover {
-    background-color: rgb(0, 140, 255);
-    color: rgb(12, 12, 12);
-}
-/* =======================Top Information=========================== */
-
-#soulCount {
-    font-size: 30px;
-    color: rgb(247, 247, 247);
-}
-
-.borderFit {
-    border: 1px solid rgb(97, 97, 97);
+.borderContainer {
+    outline: 1px solid rgb(97, 97, 97);
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 2px;
     padding-bottom: 2px;
-    width: fit-content;
-    display: inline-block;
 }
 
-.slightMarginTB {
-    margin-top: 3px;
-    margin-bottom: 3px;
+/* #region soul/prestige counters */
+#playerSoulCounter {
+    font-size: 30px;
+    color: rgb(247, 247, 247);
 }
 
-#soulBeads {
-
+#currenciesContainerTop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-
-#topCurrencies {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-#soulBeadsBeta {
-    
-}
-
-#beadBeta {
+#genericBeadBox {
     color: rgb(247, 247, 247);
     background: rgb(83, 83, 83);
-    width: 70px;
-    padding-left: 2px;
-    padding-right: 2px;
+    width: 8vw;
+    margin-top: 1vh;
+    display: inline-block;
 }
-
-#darkBead {
-    color: rgb(247, 247, 247);
-    background: rgb(12, 12, 12);
-    width: 70px;
-    padding-left: 2px;
-    padding-right: 2px;
-}
-
-#lightBead {
+#lightBeadBox {
     color: rgb(12, 12, 12);
     background: rgb(247, 247, 247);
-    width: 70px;
-    padding-left: 2px;
-    padding-right: 2px;
+    width: 4vw;
+    margin-top: 1vh;
+    display: inline-block;
 }
-/* =======================Buttons=========================== */
-#mainButtonsRow {
-    text-align: center;
+#darkBeadBox {
+    color: rgb(247, 247, 247);
+    background: rgb(12, 12, 12);
+    width: 4vw;
+    margin-top: 1vh;
+    display: inline-block;
 }
-
-.button {
-    padding: 4px 16px;
-    font-size: 14px;
+.soulBeadTextCentered {
+    width: 4vw;
     text-align: center;
     display: inline-block;
-    margin: 4px 2px;
 }
+
+/* #endregion */
 
 .topButtons {
-    border: 1px solid rgb(0, 140, 255);
-    background-color: rgb(71, 71, 71);
-    color: rgb(247, 247, 247);
-    width: 120px;
-    font-size: 18px;
-}
-.topButtons:hover {
-    background-color: rgb(0, 140, 255);
-    color: rgb(12, 12, 12);
-}
-
-#storyButton {
-    display: none;
-}
-
-#crystalsButton {
-    display: none;
-}
-
-#mansionButton {
-    display: none;
-}
-/* =======================Bottom Tabs=========================== */
-.mainPaneTab {
-    display: block;
-    text-align: center;
-}
-
-#crystalsTab {
-    display: none;
-}
-
-#mansionTab {
-    display: none;
-}
-
-/* #storyTab {
-    display: none;
-}
-
-.newStry {
-    text-shadow: 0px 0px 20px gold;
-    box-shadow: 0px 0px 20px gold;
-}
-
-#storyAscensionButton {
-    display: none;
-}
-
-#storyTabCatDiv {
-    text-align: center;
-    margin: 0 auto;
-    display: inline-block;
-}
-
-.storyTabButtons {
-    width: 70px;
-    border: 1px solid rgb(209, 0, 216);
-    background-color: rgb(71, 71, 71);
-    color: rgb(247, 247, 247);
-    margin: 3px 3px;
-
-}
-
-#storyTextPane {
-    width: 50%;
-    text-align: center;
-    display: inline-block;
-}
-
-.storyTabButtons:hover {
-    background-color: rgb(209, 0, 216);
-}
-
-#storyTailsCat {
-    display: none;
-}
-
-#storyBeadsCat {
-    display: none;
-}
-
-#storyAscensionCat {
-    display: none;
-}
-
-.storyBits {
-    display: none;
-} */
-
-#optionsTab {
-    display: none;
-}
-
-#statsTab{
-    display: none;
-}
-
-.lowerButtons {
-    border: 1px solid rgb(0, 187, 0);
-    background-color: rgb(71, 71, 71);
-    color: rgb(247, 247, 247);
-    width: 90px;
-    font-size: 14px;
-}
-
-.lowerButtons:hover {
-    background-color: rgb(0, 187, 0);
-    color: rgb(12, 12, 12);
-}
-
-/* =========================Soul Tab========================== */
-
-#soulMapTab {
-    width: 1314px;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-}
-.mapSidePanels {
-    width: 300;
-    height: 500;
-    position: absolute;
-}
-
-#leftMapPanel {
-    top: 0px;
-    left: 0px;
-}
-
-#map1 {
-    width: 700;
-    height: 500;
-    top: 0px;
-    left: 306px;
-    position: absolute;
-}
-
-#rightMapPanel {
-    top: 0px;
-    right: 0px;
-}
-
-#centerMap {
-    height: 25px;
-    width: 25;
-    top: 5px;
-    right: 311px;
-    outline: 1px solid rgb(35, 51, 190);
+    outline: 1px solid rgb(0, 140, 255);
     border: none;
-    position: absolute;
-    background-color: rgb(71, 71, 71);
-    color: rgb(206, 206, 206);
-}
-#centerMap:hover {
-    background-color: rgb(35, 51, 190);
-}
-
-#leftMapPanelInnerDiv {
-    width: inherit;
-    height: inherit;
-}
-
-.sidePanelTitle {
-    width: 240px;
-    height: fit-content;
-    border: 3px solid rgb(104, 104, 104);
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-size: 14pt;
-}
-
-#buttonFight {
-    border: 1px solid rgb(9, 136, 20);
     background-color: rgb(71, 71, 71);
     color: rgb(247, 247, 247);
-    width: 70px;
-    height: 20px;
-    margin-bottom: 2px;
-    padding: 0;
-}
-#buttonFight:hover {
-    background-color: rgb(9, 136, 20);
-}
-#buttonFight:disabled {
-    background-color: rgb(117, 117, 117);
-}
-
-#buttonFlee {
-    border: 1px solid rgb(190, 12, 12);
-    background-color: rgb(71, 71, 71);
-    color: rgb(247, 247, 247);
-    width: 70px;
-    height: 20px;
-    margin-bottom: 2px;
-    display: none;
-    padding: 0;
-}
-#buttonFlee:hover {
-    background-color: rgb(190, 12, 12);
-}
-
-#buttonRelease {
-    border: 1px solid rgb(255, 166, 0);
-    background-color: rgb(71, 71, 71);
-    color: rgb(247, 247, 247);
-    width: 70px;
-    height: 20px;
-    margin-bottom: 2px;
-    display: none;
-    padding: 0;
-}
-#buttonRelease:hover {
-    background-color: rgb(255, 166, 0);
-}
-
-#fightDetails {
-    height: 433px;
-    position: relative;
-}
-
-#playerName {
-    outline: 2px solid rgb(104, 104, 104);
-    background-color: rgb(26, 38, 39);
-    width: 100px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 5px;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-}
-
-#playerStatsBox {
-    outline: 2px solid rgb(104, 104, 104);
-    background-color: rgb(68, 68, 68);
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    top: 28px;
-    width: 240px;
-    height: 80px;
-}
-
-.inner {
-    width: inherit;
-    height: inherit;
-    position: relative;
-}
-
-#playerHealthBackground {
-    width: 220px;
-    height: 6px;
-    border: 1px solid rgb(20, 20, 20);
-    background-color: rgb(211, 211, 211);
-    position: absolute;
-    top: 3px;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0px;
-    right: 0px;
-}
-
-#playerHealthBar {
-    width: 100%;
-    height: 6px;
-    background-color: rgb(209, 15, 15);
-}
-
-#playerAttack {
-    background-color: rgb(68, 68, 68);
-    position: absolute;
-    left: 5px;
-    top: 15px;
-    width: 60px;
-    height: 60px;
-}
-#pUpperAtk {
-    position: absolute;
-    outline: 2px solid rgb(41, 41, 41);
-    background-color: rgb(59, 59, 59);
-    width: 60px;
-    height: 25px;
+    width: 7vw;
+    font-size: 1.2vw;
     padding-top: 4px;
-    top: 0px;
-}
-#pLowerAtk {
-    position: absolute;
-    outline: 2px solid rgb(41, 41, 41);
-    width: 60px;
-    height: 25px;
-    padding-top: 4px;
-    top: 31px;
+    padding-bottom: 4px;
+    margin: .4vw .6vh;
 }
 
-#playerHealthLabel {
-    outline: 2px solid rgb(41, 41, 41);
-    background-color: rgb(156, 31, 31);
-    font-size: 9pt;
-    width: 98px;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    right: 0px;
-    left: 0px;
-    top: 15px;
-}
-#autofightBox {
-    position: absolute;
-    outline: 2px solid rgb(41, 41, 41);
-    width: 98px;
-    height: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    right: 0px;
-    left: 0px;
-    top: 35px;
-}
-#autofight {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    right: 0px;
-    left: 0px;
-    top: 17px;
-}
-#autofightLabel {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    right: 0px;
-    left: 0px;
-    top: 5px;
-    font-size: 9pt;
+#topButtonsContainer {
+    margin-top: 1vh;
+    display: flex;
+    justify-content: center;
 }
 
-#playerDefense {
-    background-color: rgb(68, 68, 68);
-    position: absolute;
-    right: 5px;
-    top: 15px;
-    width: 60px;
-    height: 60px;
-}
-#pUpperDef {
-    position: absolute;
-    outline: 2px solid rgb(41, 41, 41);
-    background-color: rgb(59, 59, 59);
-    width: 60px;
-    height: 25px;
-    top: 0px;
-    padding-top: 4px;
-}
-#pLowerDef {
-    position: absolute;
-    outline: 2px solid rgb(41, 41, 41);
-    width: 60px;
-    height: 25px;
-    top: 31px;
-    padding-top: 4px;
-}
-
-#enemyHealthBackground {
-    width: 220px;
-    height: 6px;
-    border: 1px solid rgb(20, 20, 20);
-    background-color: rgb(211, 211, 211);
-    position: absolute;
-    bottom: 3px;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0px;
-    right: 0px;
-}
-#enemyHealthBar {
-    width: 100%;
-    height: 6px;
-    background-color: rgb(209, 15, 15);
-}
-
-#enemyAttack {
-    background-color: rgb(68, 68, 68);
-    position: absolute;
-    left: 5px;
-    bottom: 15px;
-    width: 60px;
-    height: 60px;
-}
-#eLowerAtk {
-    position: absolute;
-    outline: 2px solid rgb(41, 41, 41);
-    background-color: rgb(59, 59, 59);
-    width: 60px;
-    height: 25px;
-    padding-top: 4px;
-    bottom: 0px;
-}
-#eUpperAtk {
-    position: absolute;
-    outline: 2px solid rgb(41, 41, 41);
-    width: 60px;
-    height: 25px;
-    padding-top: 4px;
-    bottom: 31px;
-}
-
-#enemyHealthLabel {
-    outline: 2px solid rgb(41, 41, 41);
-    background-color: rgb(156, 31, 31);
-    font-size: 9pt;
-    width: 98px;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    right: 0px;
-    left: 0px;
-    bottom: 15px;
-}
-
-#autoreleaseBox {
-    position: absolute;
-    outline: 2px solid rgb(41, 41, 41);
-    width: 98px;
-    height: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    right: 0px;
-    left: 0px;
-    bottom: 35px;
-}
-#autorelease {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    right: 0px;
-    left: 0px;
-    bottom: 17px;
-}
-#autoreleaseLabel {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    right: 0px;
-    left: 0px;
-    bottom: 5px;
-    font-size: 9pt;
-}
-
-#enemyDefense {
-    background-color: rgb(68, 68, 68);
-    position: absolute;
-    right: 5px;
-    bottom: 15px;
-    width: 60px;
-    height: 60px;
-}
-
-#eLowerDef {
-    position: absolute;
-    outline: 2px solid rgb(41, 41, 41);
-    background-color: rgb(59, 59, 59);
-    width: 60px;
-    height: 25px;
-    bottom: 0px;
-    padding-top: 4px;
-}
-#eUpperDef {
-    position: absolute;
-    outline: 2px solid rgb(41, 41, 41);
-    width: 60px;
-    height: 25px;
-    bottom: 31px;
-    padding-top: 4px;
-}
-
-#enemyStatsBox {
-    outline: 2px solid rgb(104, 104, 104);
-    background-color: rgb(68, 68, 68);
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    bottom: 28px;
-    width: 240px;
-    height: 80px;
-}
-
-#enemyName {
-    outline: 2px solid rgb(104, 104, 104);
-    background-color: rgb(39, 26, 26);
-    width: 100px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 5px;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.mapPanelsAll {
-    border: 1px solid rgb(97, 97, 97);
-}
-
-#consumeRelease {
-    outline: 2px solid rgb(104, 104, 104);
-    background-color: rgb(85, 85, 85);
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    top: 110px;
-    width: 240px;
-    height: 213px;
-}
-
-#soulBoxBackground {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    background-color: rgb(12, 12, 12);
-}
-#soulBox {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    background-color: rgb(235, 235, 235);
-}
-
-#buttonConsume {
+.soulTabButtons {
+    outline: 1px solid rgb(16, 223, 27);
     border: none;
-    background-color: rgb(235, 235, 235);
-    color: rgb(12, 12, 12);
-    width: 70px;
-    height: 20px;
-    position: absolute;
-    margin: auto;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    padding: 0;
-}
-
-#soulUpgradesTab {
-    display: none;
-}
-
-.upgradeTitle {
-    font-size: 16pt;
-}
-#homeTitle {
-    color: rgb(0, 108, 196);
-}
-
-.upgradeGroups {
-    width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    height: fit-content;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-#upgradeGroupHome {
-    border: 2px solid rgb(0, 108, 196);
-}
-
-.upgradeButtonTitle {
-    margin-bottom: 5px;
-    display: block;
-}
-
-.upgradeButtonCostMain {
-    margin-top: 5px;
-    display: block;
-}
-
-.homeUpgradeBtns {
-    border: 1px solid rgb(0, 108, 196);
     background-color: rgb(71, 71, 71);
     color: rgb(247, 247, 247);
-    width: 160px;
-    height: 100px;
-    margin-bottom: 10px;
-    margin-top: 5px;
-    vertical-align: top;
-}
-.homeUpgradeBtns:hover {
-    background-color: rgb(0, 108, 196);
-    color: rgb(17, 17, 17);
+    width: 5vw;
+    font-size: .8vw;
+    padding-top: .2vh;
+    padding-bottom: .2vh;
+    margin: .4vw .2vh;
 }
 
 
-button.homeUpgradesBought {
-    background-color: rgb(0, 108, 196) !important;
-    color: rgb(17, 17, 17);
-}
-
-.buttonRightPanel {
-    border: 1px solid rgb(221, 201, 89);
-    background-color: rgb(71, 71, 71);
-    color: rgb(247, 247, 247);
-    height: 20px;
-    margin-bottom: 4px;
-    margin-left: 2px;
-    margin-right: 2px;
-    margin-top: 4px;
-    padding-left: 4px;
-    padding-right: 4px;
-}
-.buttonRightPanel:hover {
-    background-color: rgb(221, 201, 89);
-    color: rgb(17, 17, 17);
-}
-
-.innerRightTabs {
-    border: 1px solid rgb(97, 97, 97);
-    width: 240px;
-    height: 400px;
+/* #region loading/changelog stuff */
+.initialScreens {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(37, 37, 37);
     position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 4px;
+    left: 0;
     top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
 }
 
-#descTabText {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#descTabBarBackground {
-    width: 220px;
-    height: 13px;
-    border: 1px solid rgb(20, 20, 20);
-    background-color: rgb(80, 80, 80);
-    position: absolute;
-    bottom: 3px;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-}
-
-#descTabBar {
-    width: 0%;
-    height: 13px;
-    background-color: rgb(14, 158, 26);
-}
-
-#descTabEnemiesKilled {
-    position: absolute;
-    bottom: 4px;
-    right: 0;
-    left: 0;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 9pt;
-}
-
-#logTab {
-    display: none;
+#changeLogContainer {
+    width: 50vw;
+    height: 70vh;
+    margin-top: 3vh;
     text-align: left;
-    overflow-y: scroll;
-    padding-left: 2px;
-    padding-right: 2px;
 }
-
-#logTable {
-    font-size: 11pt;
-}
-
-#logOptionsButton {
-    background-image: url("../options_gear.png");
-    background-color: #aaaaaa;
-    background-size: 20px 20px;
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    top: 5px;
-    right: 5px;
-    outline: 1px solid rgb(35, 51, 190);
-    border: none;
-    display: none;
-}
-#logOptionsButton:hover {
-    background-color: rgb(35, 51, 190);
-}
-
-.popupOptionsDiv {
-    top: 0; 
-    right: 0; 
-    bottom: 0; 
-    left: 0;
-    text-align: center;
-    margin: auto;
-    position: absolute;
-    width: 400px;
-    height: 300px;
-    background-color: rgb(51, 51, 51);
-    border: 1px solid blue;
-    display: none;
-}
-
-#cloneTab {
-    display: none;
-}
-
-
-
-/* =================================Tails Tab==================================== */
-/* #tailsTab {
-    display: none;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    height: 75%;
-    border: 1px solid black;
-} */
-
-#tailsTab {
-    display: none;
-}
-
-#tailsContainer {
-    width: 800px;
-    height: 500px;
-    display: inline-block;
-    position: relative;
-
-}
-
-.tailsButtons {
-    transition: text-shadow 2s;
-    transition: box-shadow 2s;
-    width: 70px;
-    height: 70px;
-    background-color: rgb(71, 71, 71);
-    color: white;
-    position: absolute;
-    padding: 0;
-}
-
-#tailsButton1 {
-    left: calc(50% - 35px);
-    border: 1px solid rgb(255, 166, 0);
-}
-#tailsButton1:hover {
-    background-color: rgb(255, 166, 0);
-}
-
-#tailsButton2 {
-    top: 26px;
-    left: 210px;
-    border: 1px solid rgb(255, 153, 0);
-}
-#tailsButton2:hover {
-    background-color: rgb(255, 153, 0);
-}
-
-#tailsButton3 {
-    top: 26px;
-    right: 210px;
-    border: 1px solid rgb(255, 174, 0);
-}
-#tailsButton3:hover {
-    background-color: rgb(255, 174, 0);
-}
-
-#tailsButton4 {
-    top: 126px;
-    left: 86px;
-    border: 1px solid rgb(255, 145, 0);
-}
-#tailsButton4:hover {
-    background-color: rgb(255, 145, 0);
-}
-
-#tailsButton5 {
-    top: 126px;
-    right: 86px;
-    border: 1px solid rgb(255, 187, 0);
-}
-#tailsButton5:hover {
-    background-color: rgb(255, 187, 0);
-}
-
-#tailsButton6 {
-    top: 260px;
-    left: 20px;
-    border: 1px solid rgb(255, 136, 0);
-}
-#tailsButton6:hover {
-    background-color: rgb(255, 136, 0);
-}
-
-#tailsButton7 {
-    top: 260px;
-    right: 20px;
-    border: 1px solid rgb(255, 196, 0);
-}
-#tailsButton7:hover {
-    background-color: rgb(255, 196, 0);
-}
-
-#tailsButton8 {
-    bottom: 0px;
-    left: 0px;
-    border: 1px solid rgb(255, 123, 0);
-}
-#tailsButton8:hover {
-    background-color: rgb(255, 123, 0);
-}
-
-#tailsButton9 {
-    bottom: 0px;
-    right: 0px;
-    border: 1px solid rgb(255, 208, 0);
-}
-#tailsButton9:hover {
-    background-color: rgb(255, 208, 0);
-}
-/*=============================Inner Panels===================================*/
-.tailsInnerPanel {
-    width: 466px;
-    height: 385px;
-    position: absolute;
-    left: 166px;
-    bottom: 0;
-    border: 1px solid white;
-    overflow: auto;
-    background-color: rgb(37, 37, 37);
-    display: none;
-}
-
-.tailsInnerButtons {
-    position: absolute;
-    width: 80px;
-    height: 60px;
-    background-color: rgb(71, 71, 71);
-    color: white;
-}
-
-/* #tailsInnerPanel11 {
-
-}
-.tailsInnerButtons11 {
-
-}
-.tailsInnerButtons11:hover {
-
-}
-
-#tailsInnerPanel21 {
-
-}
-.tailsInnerButtons21 {
-
-}
-.tailsInnerButtons21:hover {
-
-}
-
-#tailsInnerPanel31 {
-
-}
-.tailsInnerButtons31 {
-
-}
-.tailsInnerButtons31:hover {
-
-}
-
-#tailsInnerPanel41 {
-
-}
-.tailsInnerButtons41 {
-
-}
-.tailsInnerButtons41:hover {
-
-}
-
-#tailsInnerPanel51 {
-
-}
-.tailsInnerButtons51 {
-
-}
-.tailsInnerButtons51:hover {
-
-}
-
-#tailsInnerPanel61 {
-
-}
-.tailsInnerButtons61 {
-
-}
-.tailsInnerButtons61:hover {
-
+#introText {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-#tailsInnerPanel71 {
-
-}
-.tailsInnerButtons71 {
-
-}
-.tailsInnerButtons71:hover {
-
-}
-
-#tailsInnerPanel81 {
-
-}
-.tailsInnerButtons81 {
-
-}
-.tailsInnerButtons81:hover {
-
-}
-
-#tailsInnerPanel91 {
-
-}
-.tailsInnerButtons91 {
-
-}
-.tailsInnerButtons91:hover {
-
-}
-
-#tailsInnerPanel12 {
-
-}
-.tailsInnerButtons12 {
-
-}
-.tailsInnerButtons12:hover {
-
-}
-
-#tailsInnerPanel22 {
-
-}
-.tailsInnerButtons22 {
-
-}
-.tailsInnerButtons22:hover {
-
-}
-
-#tailsInnerPanel32 {
-
-}
-.tailsInnerButtons32 {
-
-}
-.tailsInnerButtons32:hover {
-
-}
-
-#tailsInnerPanel42 {
-
-}
-.tailsInnerButtons42 {
-
+.orange {
+    color: rgb(255, 166, 0);
 }
-.tailsInnerButtons42:hover {
 
+#loadingScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-#tailsInnerPanel52 {
+/* #endregion */
 
-}
-.tailsInnerButtons52 {
-
-}
-.tailsInnerButtons52:hover {
-
-}
-
-#tailsInnerPanel62 {
-
-}
-.tailsInnerButtons62 {
-
-}
-.tailsInnerButtons62:hover {
-
-}
-
-#tailsInnerPanel72 {
-
-}
-.tailsInnerButtons72 {
-
-}
-.tailsInnerButtons72:hover {
-
-}
-
-#tailsInnerPanel82 {
-
-}
-.tailsInnerButtons82 {
-
-}
-.tailsInnerButtons82:hover {
-
-}
-
-#tailsInnerPanel92 {
-
-}
-.tailsInnerButtons92 {
-
-}
-.tailsInnerButtons92:hover {
-
-} */
-
-/*============================Ascension=======================================*/
-#ascensionButton {
-    border: 1px solid rgb(0, 47, 255);
-    background-color: rgb(71, 71, 71);
-    color: rgb(206, 206, 206);
-    transition: box-shadow 2s;
-}
-#ascensionButton:hover {
-    background-color: rgb(0, 47, 255) !important;
-    color: rgb(206, 206, 206) !important;
-}
-
-.ascend {
-    box-shadow: 0px 0px 20px cyan;
-    background-color: cyan !important;
-    color: rgb(12, 12, 12) !important;
-}
-
-.ascendButtons {
-    box-shadow: 0px 0px 15px cyan;
-}
-
-
-/*==============================Options Tab=================================*/
-#saveButton {
-    font-size: 18pt;
-    width: 140px;
-    height: 70px;
-    border: 1px solid rgb(29, 153, 12);
-    background-color: rgb(71, 71, 71);
-    margin-right: 20px;
-}
-#saveButton:hover {
-    background-color: rgb(29, 153, 12);;
-}
-
-#clearButton {
-    font-size: 18pt;
-    width: 140px;
-    height: 70px;
-    border: 1px solid rgb(153, 12, 12);
-    background-color: rgb(71, 71, 71);
-    margin-right: 20px;
-}
-#clearButton:hover {
-    background-color: rgb(153, 12, 12);;
-}
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .7s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
