@@ -98,6 +98,12 @@ button[disabled] {
     margin: .4vw .2vh;
 }
 
+#mapSoulTab {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
 
 /* #region loading/changelog stuff */
 .initialScreens {
@@ -140,3 +146,10 @@ button[disabled] {
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
   }
+
+
+#mynetwork {
+    width: 40vw;
+    height: 60vh;
+    border: 1px solid lightgray;
+}

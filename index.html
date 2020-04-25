@@ -6,11 +6,13 @@
     <link rel="icon" href="fox_sprite.png">
     <link rel="stylesheet" href="css/styles.css">
     <link href="css/vis.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 </head>
 
 <body>
 <div id="vueWrapper">
 
+    <!-- Soul and prestige currencies -->
     <div id="currenciesContainerTop">
         <div>
             You have<br>
@@ -27,7 +29,7 @@
         </div>
     </div>
 
-
+    <!-- Main tab buttons -->
     <div id="topButtonsContainer">
         <button @click="activeStuff.activeMainTab = 'soul'" id="soulButton" class="topButtons">Soul</button>
         <transition name="fade"><button @click="activeStuff.activeMainTab = 'tails'" v-if="unlocks.tailsUnlocked" id="tailsButton" class="topButtons">Tails</button></transition>
@@ -38,13 +40,13 @@
         <button @click="activeStuff.activeMainTab = 'stats'" id="statsButton" class="topButtons">Statistics</button>
     </div>
 
-
+    <!-- Soul tab, includes map and regular upgrades -->
     <div v-show="activeStuff.activeMainTab === 'soul'" id="soulTab">
         <button @click="activeStuff.activeSoulTab = 'map'" id="mapButton" class="soulTabButtons">Map</button>
         <button @click="activeStuff.activeSoulTab = 'upgrades'" id="upgradesButton" class="soulTabButtons">Upgrades</button>
 
         <div v-show="activeStuff.activeSoulTab === 'map'" id="mapSoulTab">
-
+            <vis-network ref="mapNetwork"></vis-network>
         </div>
 
 
@@ -54,36 +56,37 @@
         
     </div>
 
-
+    <!-- Tails tab, intially just has graphics showing number of tails, turns into prestige currency menu - unlocked at second tail -->
     <div v-show="activeStuff.activeMainTab === 'tails'" id="tailsTab">
 test2
     </div>
 
-
+    <!-- Crystals tab, passive generation of Light Soul - unlocked at first light bead -->
     <div v-show="activeStuff.activeMainTab === 'crystals'" id="crystalsTab">
 test3
     </div>
 
-
+    <!-- Mansion tab, uncertain what all this entails so far - unlocked at ??? -->
     <div v-show="activeStuff.activeMainTab === 'mansion'" id="mansionTab">
 
     </div>
 
-
+    <!-- Story messages displayed here -->
     <div v-show="activeStuff.activeMainTab === 'story'" id="storyTab">
 
     </div>
 
-
+    <!-- Options, save, load -->
     <div v-show="activeStuff.activeMainTab === 'options'" id="optionsTab">
 
     </div>
 
-
+    <!-- Player stats -->
     <div v-show="activeStuff.activeMainTab === 'stats'" id="statsTab">
 
     </div>
 
+    <!-- Changelog, may remove from initial screen -->
     <div v-if="showIntro === true" id="startScreen" class="initialScreens">
         <div id="introText">
             <span style="font-size: 4vw;">Kitsu<span class="orange">ne</span></span>
@@ -114,7 +117,7 @@ test3
         </div>
     </div>
 
-
+    <!-- Displayed while rest of page loads -->
     <div id="loadingScreen" v-show="loading" class="initialScreens">
         <span style="font-size: 10vw;">Kitsu<span class="orange">ne</span></span><br>
         <span style="font-size: 4vw;">Loading...</span>
@@ -122,7 +125,6 @@ test3
 
 </div>
 
-<script src="javascript/vis.min.js"></script>
 <script src="javascript/vue.min.js"></script>
 <script src="javascript/main.js"></script>
 <script src="javascript/math.min.js"></script>
