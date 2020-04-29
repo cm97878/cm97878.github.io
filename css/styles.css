@@ -5,16 +5,19 @@ body {
     font-size: 1vw;
 }
 
+
 button {
     transition: background-color 0.2s, color 0.4s, box-shadow 0.02s ease-out;
 }
-button:active {
-    box-shadow: inset 0px 0px 5px rgb(15, 15, 15);
-}
-button[disabled] {
-    background-color: rgb(117, 117, 117) !important;
-    pointer-events: none;
-}
+
+    button:active {
+        box-shadow: inset 0px 0px 5px rgb(15, 15, 15);
+    }
+
+    button[disabled] {
+        background-color: rgb(117, 117, 117) !important;
+        pointer-events: none;
+    }
 
 .smallHelperText {
     font-size: .75vw;
@@ -22,15 +25,15 @@ button[disabled] {
 
 .borderContainer {
     outline: 1px solid rgb(97, 97, 97);
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-left: .3vw;
+    padding-right: .3vw;
+    padding-top: .2vh;
+    padding-bottom: .2vh;
 }
 
 /* #region soul/prestige counters */
 #playerSoulCounter {
-    font-size: 30px;
+    font-size: 4vh;
     color: rgb(247, 247, 247);
 }
 
@@ -39,6 +42,7 @@ button[disabled] {
     flex-direction: column;
     justify-content: center;
 }
+
 #genericBeadBox {
     color: rgb(247, 247, 247);
     background: rgb(83, 83, 83);
@@ -46,6 +50,7 @@ button[disabled] {
     margin-top: 1vh;
     display: inline-block;
 }
+
 #lightBeadBox {
     color: rgb(12, 12, 12);
     background: rgb(247, 247, 247);
@@ -53,6 +58,7 @@ button[disabled] {
     margin-top: 1vh;
     display: inline-block;
 }
+
 #darkBeadBox {
     color: rgb(247, 247, 247);
     background: rgb(12, 12, 12);
@@ -60,6 +66,7 @@ button[disabled] {
     margin-top: 1vh;
     display: inline-block;
 }
+
 .soulBeadTextCentered {
     width: 4vw;
     text-align: center;
@@ -101,8 +108,9 @@ button[disabled] {
 #mapSoulTab {
     display: flex;
     justify-content: center;
-    flex-direction: row;
 }
+
+
 
 
 /* #region loading/changelog stuff */
@@ -121,6 +129,7 @@ button[disabled] {
     margin-top: 3vh;
     text-align: left;
 }
+
 #introText {
     display: flex;
     align-items: center;
@@ -142,14 +151,101 @@ button[disabled] {
 
 .fade-enter-active, .fade-leave-active {
     transition: opacity .7s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
-  }
+}
 
 
-#mynetwork {
+#map-network {
     width: 40vw;
-    height: 60vh;
+    height: 65vh;
+    border: 1px solid lightgray;
+    margin-left: .5vw;
+    margin-right: .5vw;
+}
+
+.sidePanels {
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    height: 70vh;
     border: 1px solid lightgray;
 }
+
+/* #region home stuff */
+#homeTitleTextContainer {
+    width: 20vw;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 1px solid lightgray;
+    font-size: 4vh;
+    color: rgb(95, 219, 81);
+}
+
+#homeGraphicsContainer {
+    display: flex;
+    width: 20vw;
+    height: 55vh;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#homeGraphics {
+    outline: 1px solid lightgrey;
+    margin: 4px;
+}
+
+#homeRightPanel {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#homeRightPanelUpgradeContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 19.6vw;
+    height: 50vh;
+    margin-top: .2vw;
+    border: 1px solid lightgray;
+}
+
+#homeRightPanelTitleText {
+    width: 19.6vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#homeRightPanelUpgradeList {
+    width: 19.6vw;
+    height: 45vh;
+    display: flex;
+}
+
+#homeRightPanelDescription {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    text-wrap: normal;
+    height: 19.5vh;
+    width: 19.5vw;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+}
+
+    #homeRightPanelDescription::-webkit-scrollbar { /* WebKit */
+        width: 0;
+        height: 0;
+    }
+
+/* #endregion */

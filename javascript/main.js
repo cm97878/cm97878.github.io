@@ -9,6 +9,7 @@ var player = {
         beadsLight: 0,
         beadsDark: 0,
     },
+
     stats: {
         //Run-specific things
         runTotalS: 0,
@@ -36,10 +37,12 @@ var player = {
     activeStuff: {
         activeMainTab: "soul",
         activeSoulTab: "map",
-    },
+        sidePanelSpecial: false,
+        sidePanelName: "",
+        leftPanelTitle: "",
+        rightPanelDescription: "",
 
-    combat: {
-        isFighting: false,
+        isFighting: true,
     },
 
     loading: true,
@@ -47,18 +50,23 @@ var player = {
 }
 
 var nodes = new vis.DataSet([
-    {id: 'home',  
+    {
+        id: 'home',  
         x: 0, 
         y: 0,
         group: 'forest',
         shape: 'hexagon',
         size: 15,
         details: {
-            name: 'Home',}},
+            name: 'Home',
+            description: 'a'
+        }
+    }, //home
 
 
 
-    {id: 'trailNorth1', 
+    {
+        id: 'trailNorth1', 
         x: 100, 
         y: -30,
         group: 'forest',
@@ -71,9 +79,12 @@ var nodes = new vis.DataSet([
             killed: 0,
             mastered: false,
             toUnlock: ["trailNorth2"],
-            name: 'Forest Trail'}},
+            name: 'Forest Trail'
+        }
+    }, //trailNorth1
             
-    {id: 'trailNorth2', 
+    {
+        id: 'trailNorth2', 
         x: 180, 
         y: 10,
         group: 'forest',
@@ -88,9 +99,12 @@ var nodes = new vis.DataSet([
             killed: 0,
             mastered: false,
             toUnlock: ["trailNorthClearing1", "trailRiver1", "trailNorth3"],
-            name: 'Forest Trail'}},
+            name: 'Forest Trail'
+        }
+    }, //trailNorth2
 
-    {id: 'trailNorthClearing1', 
+    {
+        id: 'trailNorthClearing1', 
         x: 110, 
         y: 40,
         group: 'forest',
@@ -104,9 +118,12 @@ var nodes = new vis.DataSet([
             killed: 0,
             mastered: false,
             toUnlock: [],
-            name: 'Forest Clearing'}},
+            name: 'Forest Clearing'
+        }
+    }, //trailNorthClearing1
 
-    {id: 'trailNorth3', 
+    {
+        id: 'trailNorth3', 
             x: 250, 
             y: 105,
             group: 'forest',
@@ -119,9 +136,12 @@ var nodes = new vis.DataSet([
                 killed: 0,
                 mastered: false,
                 toUnlock: [],
-                name: 'Forest Trail'}},
+            name: 'Forest Trail'
+        }
+    }, //trailNorth3
 
-    {id: 'trailRiver1', 
+    {
+        id: 'trailRiver1', 
             x: 255, 
             y: 7,
             group: 'forest',
@@ -136,12 +156,14 @@ var nodes = new vis.DataSet([
                 killed: 0,
                 mastered: false,
                 toUnlock: [],
-                name: 'River Trail - Forest Side'}},
-
+            name: 'River Trail - Forest Side'
+        }
+    }, ///trailRiver 1
 
 
                 
-    {id: 'trailSouth1',  
+    {
+        id: 'trailSouth1',  
         x: 10, 
         y: 100,
         group: 'forest',
@@ -154,28 +176,30 @@ var nodes = new vis.DataSet([
             killed: 0,
             mastered: false,
             toUnlock: [],
-            name: 'Rocky Trail'}},
+            name: 'Rocky Trail'
+        }
+    }, //trailSouth1
 ]);
 
 var edges = new vis.DataSet([
     {id: "home-trailNorth1", 
-        from: 'home', to: 'trailNorth1'},
+        from: 'home', to: 'trailNorth1'}, //home-trailNorth1
 
     {id: "trailNorth1-trailNorth2", 
-        from: 'trailNorth1', to: 'trailNorth2'},
+        from: 'trailNorth1', to: 'trailNorth2'}, //trailNorth1-trailNorth2
 
     {id: "trailNorth2-trailNorthClearing1",
-        from: 'trailNorth2', to: 'trailNorthClearing1'},
+        from: 'trailNorth2', to: 'trailNorthClearing1'}, //trailNorth2-trailNorthClearing1
 
     {id: "trailNorth2-trailNorth3",
-        from: 'trailNorth2', to: 'trailNorth3'},
+        from: 'trailNorth2', to: 'trailNorth3'}, //trailNorth2-trailNorth3
 
     {id: "trailNorth2-trailRiver1",
-        from: 'trailNorth2', to: 'trailRiver1'},
+        from: 'trailNorth2', to: 'trailRiver1'}, //trailNorth2-trailRiver1
 
 
     {id: "home-trailSouth1",
-        from: 'home', to: 'trailSouth1'},
+        from: 'home', to: 'trailSouth1'}, //home-trailSouth1
 ]);
 
 var options = {
@@ -200,7 +224,7 @@ window.addEventListener('load', function() {
     Vue.component('vis-network', {
         template: `
         <div>
-            <div id="mynetwork"></div>
+            <div id="map-network"></div>
         </div>`,
         data() {
             return {
@@ -218,21 +242,10 @@ window.addEventListener('load', function() {
                     edges: this.edges
                 }
             },
-            fighting() {
-                return fighting = player.combat.isFighting;
-            }
-        },
-
-        props: {
-
-        },
-
-        methods: {
-
         },
 
         mounted() {
-            this.container = document.getElementById('mynetwork');
+            this.container = document.getElementById('map-network');
             this.network = new vis.Network(this.container, this.graph_data, this.options);
             this.network.setOptions({
                 nodes: {
@@ -243,51 +256,51 @@ window.addEventListener('load', function() {
                 }
             });
 
-            var focusOptions = {
-                locked: false,
-                animation: false,
-                scale: .8,
-            }
-            this.network.focus('home', focusOptions);
-
             this.network.on("click", (params) => {
-                var nodeID = params['nodes']['0'];
+                const nodeID = params['nodes']['0'];
 
                 if (nodeID) { //returns true if a node was clicked
-                    var clickedNode = nodes.get(nodeID); //Gets the actual parameters of the node
+                    const clickedNode = nodes.get(nodeID); //Gets the actual parameters of the node
 
-                    if(clickedNode.shape == "hexagon") //If special hexagon shape
-                    {
-                        console.log(this.fighting);
-                    }
+                    vm.updateSidePanels(clickedNode.shape == "hexagon", nodeID);
                 }
             });
         }
     });
 
+
     var vm = new Vue({
         el: '#vueWrapper',
         data: player,
-        computed: { //I THINK IM DOING THIS WRONG. MAYBE A WAY TO FORMAT NUMBERS IN A BETTER WAY THAN A TON OF COMPUTEDS?
-            formattedSoul: function() {
+        computed: {
+            formattedSoul: function () {
                 return format.formatNumber(this.currentSoul.soulTotal);
             },
-            formattedLightSoul: function() {
+            formattedLightSoul: function () {
                 return format.formatNumber(this.currentSoul.soulLight);
             },
-            formattedDarkSoul: function() {
+            formattedDarkSoul: function () {
                 return format.formatNumber(this.currentSoul.soulDark);
             },
-            formattedBeadsLight: function() {
+            formattedBeadsLight: function () {
                 return format.formatNumber(this.currentSoul.beadsLight);
             },
-            formattedBeadsDark: function() {
+            formattedBeadsDark: function () {
                 return format.formatNumber(this.currentSoul.beadsDark);
             }
         },
+        methods: {
+            updateSidePanels: function (isSpecial, name) {
+                if (isSpecial) {
+                    this.activeStuff.sidePanelSpecial = name;
+                }
+                else {
+                    this.activeStuff.sidePanelSpecial = false;
+                }
+            },
+        },
     });
     player.loading = false;
-    //vm.$refs.mapNetwork.?();
 });
 
 
