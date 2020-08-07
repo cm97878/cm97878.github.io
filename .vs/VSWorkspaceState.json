@@ -2,7 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\css",
-    "\\javascript"
+    "\\javascript",
+    "\\Old",
+    "\\Old\\css(old)"
   ],
   "SelectedNode": "\\javascript\\main.js",
   "PreviewInSolutionExplorer": false

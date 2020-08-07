@@ -48,7 +48,7 @@
                 <div class="sidePanels">
 
                     <!-- Special Tabs -->
-                    <div class="sideContainer" v-show="activeStuff.sidePanelSpecial === 'home'">
+                    <div v-show="activeStuff.sidePanelSpecial === 'home'">
                         <div id="homeTitleTextContainer">
                             <span>Home</span>
                         </div>
@@ -59,7 +59,10 @@
                     <!-- !Special Tabs -->
 
                     <div v-show="!activeStuff.sidePanelSpecial">
-                        test2
+                        <div class="fightPanelTitle">
+                            <b>{{activeStuff.sidePanelTitle}}</b>
+                        </div>
+
                     </div>
                 </div>
 
@@ -92,7 +95,9 @@
                     <!-- Special Tabs -->
 
                     <div v-show="!activeStuff.sidePanelSpecial">
-                        test2
+                        <div class="fightPanelTitle">
+                            <b>{{activeStuff.sidePanelTitle}}</b>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,7 +131,9 @@
 
         <!-- Options, save, load -->
         <div v-show="activeStuff.activeMainTab === 'options'" id="optionsTab">
-
+            <button id="saveButton" @click="saveToLocal">Save</button>
+            <button id="loadButton" @click="loadFromLocal">Load</button>
+            <button id="clearButton" @click="clearData">Clear</button>
         </div>
 
         <!-- Player stats -->
