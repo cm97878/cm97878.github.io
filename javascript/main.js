@@ -30,8 +30,8 @@ let player = {
         mansionUnlocked: false,
 
         //prestige mechanics
-        prestigeLightUnlocked: false,
-        prestigeDarkUnlocked: false,
+        prestigeLightUnlocked: true,
+        prestigeDarkUnlocked: true,
     },
 
     areaInfo: {

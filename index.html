@@ -18,9 +18,9 @@
                 <span id="playerSoulCounter">{{formattedSoul}}</span><br>
                 soul.<br>
             </div>
-            <div v-if="unlocks.prestigeLightUnlocked && !unlocks.prestigeDarkUnlocked">
-                <div id="genericBeadBox" class="borderContainer">{{formattedBeadsLight}}</div><br>
-                <span class="smallHelperText">Soul Beads</span>
+            <div v-if="unlocks.prestigeDarkUnlocked && !unlocks.prestigeLightUnlocked">
+                <div id="genericBeadBox" class="borderContainer">{{formattedBeadsDark}}</div><br>
+                <span class="soulBeadTextCentered smallHelperText">Soul Beads</span>
             </div>
             <div v-else-if="unlocks.prestigeLightUnlocked && unlocks.prestigeDarkUnlocked">
                 <div id="lightBeadBox" class="borderContainer">{{formattedBeadsLight}}</div><div id="darkBeadBox" class="borderContainer">{{formattedBeadsDark}}</div><br>
@@ -62,6 +62,7 @@
                         <div class="fightPanelTitle">
                             <b>{{activeStuff.sidePanelTitle}}</b>
                         </div>
+                        
 
                     </div>
                 </div>
