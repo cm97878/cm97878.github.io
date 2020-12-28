@@ -134,9 +134,8 @@ button {
 }
 
 #changeLogContainer {
-    width: 50vw;
-    height: 70vh;
-    margin-top: 3vh;
+    width: 600px;
+    margin-top: 6px;
     text-align: left;
 }
 
@@ -169,37 +168,38 @@ button {
 
 
 #map-network {
-    width: 40vw;
-    height: 65vh;
+    width: 650px;
+    height: 500px;
     border: 1px solid lightgray;
-    margin-left: .5vw;
-    margin-right: .5vw;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 25px;
 }
 
 .sidePanels {
     display: flex;
     justify-content: center;
-    width: 20vw;
-    height: 70vh;
+    width: 400px;
+    height: 550px;
     border: 1px solid lightgray;
 }
 
 /* #region home stuff */
 #homeTitleTextContainer {
-    width: 20vw;
-    height: 15vh;
+    width: 400px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     outline: 1px solid lightgray;
-    font-size: 4vh;
+    font-size: 24pt;
     color: rgb(95, 219, 81);
 }
 
 #homeGraphicsContainer {
     display: flex;
-    width: 20vw;
-    height: 55vh;
+    width: 400px;
+    height: 450px;
     justify-content: center;
     align-items: center;
     overflow: hidden;
@@ -221,24 +221,26 @@ button {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    width: 19.6vw;
-    height: 50vh;
-    margin-top: .2vw;
+    width: 380px;
+    height: 350px;
+    margin-top: 5px;
     border: 1px solid lightgray;
 }
 
 #homeRightPanelTitleText {
-    width: 19.6vw;
-    height: 5vh;
+    width: 380px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #homeRightPanelUpgradeList {
-    width: 19.6vw;
-    height: 45vh;
+    width: 370px;
+    height: 310px;
     display: flex;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 #homeRightPanelDescription {
@@ -247,8 +249,8 @@ button {
     justify-content: center;
     flex-wrap: nowrap;
     text-wrap: normal;
-    height: 19.25vh;
-    width: 19.5vw;
+    height: 180px;
+    width: 380px;
     overflow-y: scroll;
     scrollbar-width: none; /* Firefox */
 }
@@ -264,10 +266,10 @@ button {
 /* #region combat node stuff */
 
 .fightPanelTitle {
-    border: .2vw solid rgb(104, 104, 104);
-    width: 17vw;
-    height: 3vh;
-    font-size: 2.5vh;
+    border: 3px solid rgb(104, 104, 104);
+    width: 300px;
+    height: 23px;
+    font-size: 14pt;
     margin-top: 2vh;
 }
 

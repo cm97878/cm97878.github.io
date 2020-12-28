@@ -76,10 +76,25 @@ let player = {
                 mastered: false,
                 toUnlock: [],
             },
+
+
+
+            trailSouth1: {
+                title: "Rocky Trail",
+                description: "Not so much a trail as a stretch of rocky ground that can't support much more than moss and weeds,\
+            this clear area lazily follows the cliffside to the south.",
+                enemies: ["redSquirrel", "blackSquirrel", "mole"],
+                chance: [20, 10, 5],
+                toKill: 6,
+                killed: 0,
+                mastered: false,
+                toUnlock: [],
+            }
         },
         unlockedNodes: {
             trailNorth1: true,
-            trailNorth2: true,
+            trailNorth2: false,
+            trailSouth1: true,
         }
     },
 
@@ -182,15 +197,7 @@ let nodes = new vis.DataSet([
         y: 100,
         group: 'forest',
         details: {
-            description: "Not so much a trail as a stretch of rocky ground that can't support much more than moss and weeds,\
-            this clear area lazily follows the cliffside to the south.",
-            enemies: ["redSquirrel","blackSquirrel","mole"],
-            chance: [20, 10, 5],
-            toKill: 6,
-            killed: 0,
-            mastered: false,
-            toUnlock: [],
-            name: 'Rocky Trail'
+
         }
     }, //trailSouth1
 ]);
