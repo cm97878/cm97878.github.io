@@ -18,11 +18,11 @@
                 <span id="playerSoulCounter">{{formattedSoul}}</span><br>
                 soul.<br>
             </div>
-            <div v-if="unlocks.prestigeDarkUnlocked && !unlocks.prestigeLightUnlocked">
+            <div v-if="playerData.unlocks.prestigeDarkUnlocked && !playerData.unlocks.prestigeLightUnlocked">
                 <div id="genericBeadBox" class="borderContainer">{{formattedBeadsDark}}</div><br>
                 <span class="soulBeadTextCentered smallHelperText">Soul Beads</span>
             </div>
-            <div v-else-if="unlocks.prestigeLightUnlocked && unlocks.prestigeDarkUnlocked">
+            <div v-else-if="playerData.unlocks.prestigeLightUnlocked && playerData.unlocks.prestigeDarkUnlocked">
                 <div id="lightBeadBox" class="borderContainer">{{formattedBeadsLight}}</div><div id="darkBeadBox" class="borderContainer">{{formattedBeadsDark}}</div><br>
                 <div class="soulBeadTextCentered smallHelperText">Light Beads</div><div class="soulBeadTextCentered smallHelperText">Dark Beads</div>
             </div>
@@ -30,25 +30,25 @@
 
         <!-- Main tab buttons -->
         <div id="topButtonsContainer">
-            <button @click="activeStuff.activeMainTab = 'soul'" id="soulButton" class="topButtons">Soul</button>
-            <transition name="fade"><button @click="activeStuff.activeMainTab = 'tails'" v-if="unlocks.tailsUnlocked" id="tailsButton" class="topButtons">Tails</button></transition>
-            <transition name="fade"><button @click="activeStuff.activeMainTab = 'crystals'" v-if="unlocks.crystalsUnlocked" id="crystalsButton" class="topButtons">Crystals</button></transition>
-            <transition name="fade"><button @click="activeStuff.activeMainTab = 'mansion'" v-if="unlocks.mansionUnlocked" id="mansionButton" class="topButtons">Mansion</button></transition>
-            <transition name="fade"><button @click="activeStuff.activeMainTab = 'story'" v-if="unlocks.storyUnlocked" id="storyButton" class="topButtons">Story</button></transition>
-            <button @click="activeStuff.activeMainTab = 'options'" id="optionsButton" class="topButtons">Options</button>
-            <button @click="activeStuff.activeMainTab = 'stats'" id="statsButton" class="topButtons">Statistics</button>
+            <button @click="playerData.activeStuff.activeMainTab = 'soul'" id="soulButton" class="topButtons">Soul</button>
+            <transition name="fade"><button @click="playerData.activeStuff.activeMainTab = 'tails'" v-if="playerData.unlocks.tailsUnlocked" id="tailsButton" class="topButtons">Tails</button></transition>
+            <transition name="fade"><button @click="playerData.activeStuff.activeMainTab = 'crystals'" v-if="playerData.unlocks.crystalsUnlocked" id="crystalsButton" class="topButtons">Crystals</button></transition>
+            <transition name="fade"><button @click="playerData.activeStuff.activeMainTab = 'mansion'" v-if="playerData.unlocks.mansionUnlocked" id="mansionButton" class="topButtons">Mansion</button></transition>
+            <transition name="fade"><button @click="playerData.activeStuff.activeMainTab = 'story'" v-if="playerData.unlocks.storyUnlocked" id="storyButton" class="topButtons">Story</button></transition>
+            <button @click="playerData.activeStuff.activeMainTab = 'options'" id="optionsButton" class="topButtons">Options</button>
+            <button @click="playerData.activeStuff.activeMainTab = 'stats'" id="statsButton" class="topButtons">Statistics</button>
         </div>
 
         <!-- Soul tab, includes map and regular upgrades -->
-        <div v-show="activeStuff.activeMainTab === 'soul'" id="soulTab">
-            <button @click="activeStuff.activeSoulTab = 'map'" id="mapButton" class="soulTabButtons">Map</button>
-            <button @click="activeStuff.activeSoulTab = 'upgrades'" id="upgradesButton" class="soulTabButtons">Upgrades</button>
+        <div v-show="playerData.activeStuff.activeMainTab === 'soul'" id="soulTab">
+            <button @click="playerData.activeStuff.activeSoulTab = 'map'" id="mapButton" class="soulTabButtons">Map</button>
+            <button @click="playerData.activeStuff.activeSoulTab = 'upgrades'" id="upgradesButton" class="soulTabButtons">Upgrades</button>
 
-            <div v-show="activeStuff.activeSoulTab === 'map'" id="mapSoulTab">
+            <div v-show="playerData.activeStuff.activeSoulTab === 'map'" id="mapSoulTab">
                 <div class="sidePanels">
 
                     <!-- Special Tabs -->
-                    <div v-show="activeStuff.sidePanelSpecial === 'home'">
+                    <div v-show="playerData.activeStuff.sidePanelSpecial === 'home'">
                         <div id="homeTitleTextContainer">
                             <span>Home</span>
                         </div>
@@ -58,20 +58,20 @@
                     </div> <!-- Home -->
                     <!-- !Special Tabs -->
 
-                    <div v-show="!activeStuff.sidePanelSpecial">
+                    <div v-show="!playerData.activeStuff.sidePanelSpecial">
                         <div class="fightPanelTitle">
-                            <b>{{activeStuff.sidePanelTitle}}</b>
+                            <b>{{playerData.activeStuff.sidePanelTitle}}</b>
                         </div>
-                        
+
 
                     </div>
                 </div>
 
-                <vis-network></vis-network>
+                <vis-network @node-clicked="updateSidePanels"></vis-network>
 
                 <div class="sidePanels">
                     <!-- Special Tabs -->
-                    <div v-show="activeStuff.sidePanelSpecial === 'home'">
+                    <div v-show="playerData.activeStuff.sidePanelSpecial === 'home'">
                         <div id="homeRightPanel">
                             <div id="homeRightPanelUpgradeContainer">
                                 <div id="homeRightPanelTitleText">
@@ -101,43 +101,43 @@
                     </div> <!-- Home -->
                     <!-- Special Tabs -->
 
-                    <div v-show="!activeStuff.sidePanelSpecial">
+                    <div v-show="!playerData.activeStuff.sidePanelSpecial">
                         <div class="fightPanelTitle">
-                            <b>{{activeStuff.sidePanelTitle}}</b>
+                            <b>{{playerData.activeStuff.sidePanelTitle}}</b>
                         </div>
                     </div>
                 </div>
             </div>
 
 
-            <div v-show="activeStuff.activeSoulTab === 'upgrades'" id="upgradesSoulTab">
+            <div v-show="playerData.activeStuff.activeSoulTab === 'upgrades'" id="upgradesSoulTab">
 
             </div>
 
         </div>
 
         <!-- Tails tab, intially just has graphics showing number of tails, turns into prestige currency menu - unlocked at second tail -->
-        <div v-show="activeStuff.activeMainTab === 'tails'" id="tailsTab">
+        <div v-show="playerData.activeStuff.activeMainTab === 'tails'" id="tailsTab">
             test2
         </div>
 
         <!-- Crystals tab, passive generation of Light Soul - unlocked at first light bead -->
-        <div v-show="activeStuff.activeMainTab === 'crystals'" id="crystalsTab">
+        <div v-show="playerData.activeStuff.activeMainTab === 'crystals'" id="crystalsTab">
             test3
         </div>
 
         <!-- Mansion tab, uncertain what all this entails so far - unlocked at ??? -->
-        <div v-show="activeStuff.activeMainTab === 'mansion'" id="mansionTab">
+        <div v-show="playerData.activeStuff.activeMainTab === 'mansion'" id="mansionTab">
 
         </div>
 
         <!-- Story messages displayed here -->
-        <div v-show="activeStuff.activeMainTab === 'story'" id="storyTab">
+        <div v-show="playerData.activeStuff.activeMainTab === 'story'" id="storyTab">
 
         </div>
 
         <!-- Options, save, load -->
-        <div v-show="activeStuff.activeMainTab === 'options'" id="optionsTab">
+        <div v-show="playerData.activeStuff.activeMainTab === 'options'" id="optionsTab">
             <button id="saveButton" @click="saveToLocal">Save</button>
             <button id="loadButton" @click="loadFromLocal">Load</button>
             <button id="clearButton" @click="clearData">Clear</button>
@@ -145,12 +145,12 @@
         </div>
 
         <!-- Player stats -->
-        <div v-show="activeStuff.activeMainTab === 'stats'" id="statsTab">
+        <div v-show="playerData.activeStuff.activeMainTab === 'stats'" id="statsTab">
 
         </div>
 
         <!-- Changelog, may remove from initial screen -->
-        <div v-if="showIntro === true" id="startScreen" class="initialScreens">
+        <div v-if="playerData.showIntro === true" id="startScreen" class="initialScreens">
             <div id="introText">
                 <span style="font-size: 4vw;">Kitsu<span class="orange">ne</span></span>
                 <div id="changelogContainer" class="borderContainer">
@@ -176,12 +176,12 @@
                     <br><br>
                     Oh, and the C button will recenter the map, 'cause you can scroll infinitely out and to the sides.
                 </div>
-                <button @click="showIntro = false" id="startButton" class="button topButtons">Start</button>
+                <button @click="playerData.showIntro = false" id="startButton" class="button topButtons">Start</button>
             </div>
         </div>
 
         <!-- Displayed while rest of page loads -->
-        <div id="loadingScreen" v-show="loading" class="initialScreens">
+        <div id="loadingScreen" v-show="playerData.loading" class="initialScreens">
             <span style="font-size: 10vw;">Kitsu<span class="orange">ne</span></span><br>
             <span style="font-size: 4vw;">Loading...</span>
         </div>
@@ -189,7 +189,7 @@
     </div>
 
     <script src="javascript/vis.min.js"></script>
-    <script src="javascript/vue.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
     <script src="javascript/math.min.js"></script>
     <script src="javascript/main.js"></script>
 </body>

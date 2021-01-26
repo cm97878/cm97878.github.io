@@ -196,9 +196,6 @@ let nodes = new vis.DataSet([
         x: 10, 
         y: 100,
         group: 'forest',
-        details: {
-
-        }
     }, //trailSouth1
 ]);
 
@@ -242,7 +239,72 @@ window.addEventListener('load', function() {
 
     const format = new Format("scientific");
 
-    Vue.component('vis-network', {
+    const app = Vue.createApp({
+        data() {
+            return {
+                playerData: player
+            }
+        },
+        computed: {
+            formattedSoul: function () {
+                return format.formatNumber(this.playerData.currentSoul.soulTotal);
+            },
+            formattedLightSoul: function () {
+                return format.formatNumber(this.playerData.currentSoul.soulLight);
+            },
+            formattedDarkSoul: function () {
+                return format.formatNumber(this.playerData.currentSoul.soulDark);
+            },
+            formattedBeadsLight: function () {
+                return format.formatNumber(this.playerData.currentSoul.beadsLight);
+            },
+            formattedBeadsDark: function () {
+                return format.formatNumber(this.playerData.currentSoul.beadsDark);
+            },
+        },
+        methods: {
+            updateSidePanels(isSpecial, name) {
+                if (isSpecial) {
+                    this.playerData.activeStuff.sidePanelSpecial = name;
+                }
+                else {
+                    this.playerData.activeStuff.sidePanelSpecial = false;
+                    this.playerData.activeStuff.sidePanelTitle = this.playerData.areaInfo.general[name].title;
+                }
+            },
+            saveToLocal: function () {
+                localStorage.setItem("manualSave", window.btoa(JSON.stringify(player)));
+                console.log("Saved:");
+                console.log(JSON.parse(window.atob(localStorage.getItem("manualSave"))));
+            },
+            loadFromLocal: function () {
+                try {
+                    let temp = JSON.parse(window.atob(localStorage.getItem("manualSave")));
+                    this.playerData.currentSoul = temp.currentSoul;
+                    this.playerData.stats = temp.stats;
+                    this.playerData.unlocks = temp.unlocks;
+                    this.playerData.areaInfo = temp.areaInfo;
+                    this.$forceUpdate();
+                }
+                catch (e) {
+                    console.log("No save found!");
+                }
+            },
+            clearData: function () {
+                localStorage.removeItem("manualSave");
+                console.log("Cleared save.");
+            },
+        },
+
+        mounted() {
+            this.$nextTick(function () {
+                this.playerData.loading = false;
+            })
+        }
+
+    });
+
+    app.component('vis-network', {
         template: `
         <div>
             <div id="map-network"></div>
@@ -256,7 +318,7 @@ window.addEventListener('load', function() {
                 unlockedNodes: player.areaInfo.unlockedNodes,
             }
         },
-    
+
         computed: {
             graph_data() {
                 return {
@@ -265,6 +327,9 @@ window.addEventListener('load', function() {
                 }
             },
         },
+
+
+        emits: ['nodeClicked'],
 
         mounted() {
             this.container = document.getElementById('map-network');
@@ -282,68 +347,28 @@ window.addEventListener('load', function() {
                 const nodeID = params['nodes']['0'];
                 if (nodeID) {
                     const clickedNode = nodes.get(nodeID);
-                    vm.updateSidePanels(clickedNode.shape == "hexagon", nodeID); //Maybe change to an event?
+                    this.$emit('nodeClicked', clickedNode.shape, nodeID);
                 }
             });
+
+            this.$watch(
+                () => this.unlockedNodes,
+
+                (unlockedNodesNew) => {
+                    for (const [key, value] of Object.entries(unlockedNodesNew)) {
+                        nodes.update({ id: key, hidden: !value });
+                    }
+                },
+
+                {
+                    lazy: false,
+                    deep: true
+                }
+            )
         },
     });
 
-
-    const vm = new Vue({
-        el: '#vueWrapper',
-        data: player,
-        computed: {
-            formattedSoul: function () {
-                return format.formatNumber(this.currentSoul.soulTotal);
-            },
-            formattedLightSoul: function () {
-                return format.formatNumber(this.currentSoul.soulLight);
-            },
-            formattedDarkSoul: function () {
-                return format.formatNumber(this.currentSoul.soulDark);
-            },
-            formattedBeadsLight: function () {
-                return format.formatNumber(this.currentSoul.beadsLight);
-            },
-            formattedBeadsDark: function () {
-                return format.formatNumber(this.currentSoul.beadsDark);
-            }
-        },
-        methods: {
-            updateSidePanels: function (isSpecial, name) {
-                if (isSpecial) {
-                    this.activeStuff.sidePanelSpecial = name;
-                }
-                else {
-                    this.activeStuff.sidePanelSpecial = false;
-                    this.activeStuff.sidePanelTitle = this.areaInfo.general[name].title;
-                }
-            },
-            saveToLocal: function () {
-                localStorage.setItem("manualSave", window.btoa(JSON.stringify(player)));
-                console.log("Saved:");
-                console.log(JSON.parse(window.atob(localStorage.getItem("manualSave"))));
-            },
-            loadFromLocal: function () {
-                try {
-                    let temp = JSON.parse(window.atob(localStorage.getItem("manualSave")));
-                    this.currentSoul = temp.currentSoul;
-                    this.stats = temp.stats;
-                    this.unlocks = temp.unlocks;
-                    this.areaInfo = temp.areaInfo;
-                    this.$forceUpdate();
-                }
-                catch(e) {
-                    console.log("No save found!");
-                }
-            },
-            clearData: function () {
-                localStorage.removeItem("manualSave");
-                console.log("Cleared save.");
-            }
-        },
-    });
-    player.loading = false; //TODO: This isn't good enough, as with components and the eventual loading in of data, it needs multiple. Semaphores seem to be suggested?
+    app.mount('#vueWrapper');
 });
 
 
